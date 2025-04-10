@@ -55,9 +55,6 @@ Practice of Logic Programming, 12(4-5):719–735.
 
 ## Frameworks and Libraries
 
-### [FreeLing](https://nlp.lsi.upc.edu/freeling/)
-FreeLing is a C++ library providing language analysis functionalities (morphological analysis, named entity detection, PoS-tagging, parsing, Word Sense Disambiguation, Semantic Role Labelling, etc.) for a variety of languages (English, Spanish, Portuguese, Italian, French, German, Russian, Catalan, Galician, Croatian, Slovene, among others).
-
 ### [Flair](https://github.com/flairNLP/flair)
 A very simple framework for state-of-the-art NLP. Developed by Humboldt University of Berlin and friends.
 
@@ -70,6 +67,11 @@ A very simple framework for state-of-the-art NLP. Developed by Humboldt Universi
 #### [Mastering spaCy - Second Edition](https://learning.oreilly.com/library/view/mastering-spacy/9781835880463/)
 #### [NLP_APP](https://github.com/sharonreshma/NLP_APP)
 #### [NLP Pipeline with SpaCy & TextBlob](https://github.com/AqueeqAzam/Complete-NLP-pipeline-using-SpaCy)
+
+### [FreeLing](https://nlp.lsi.upc.edu/freeling/)
+*Could not install it in Ubuntu 24.10 - Oracular Oriole*
+
+FreeLing is a C++ library providing language analysis functionalities (morphological analysis, named entity detection, PoS-tagging, parsing, Word Sense Disambiguation, Semantic Role Labelling, etc.) for a variety of languages (English, Spanish, Portuguese, Italian, French, German, Russian, Catalan, Galician, Croatian, Slovene, among others).
 
 ## Knowledge Graphs
 ### [How to Convert Any Text Into a Graph of Concepts](https://towardsdatascience.com/how-to-convert-any-text-into-a-graph-of-concepts-110844f22a1a/)
