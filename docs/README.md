@@ -136,25 +136,31 @@ Ultimately, the most effective approach will depend on the specific requirements
 To develop a system that reads Spanish legal texts (specifically Costa Rican law), extracts facts and rules, and enables symbolic reasoning with logic programming to answer questions such as contradictions or legality, you have two main paths: using existing open source resources or building a system from components. Below is a detailed expert recommendation based on open source frameworks and research.
 
 1. Existing Open Source Resources for Spanish Legal Text Processing
-* Legal-ES: This is an open source resource kit 
+  * Legal-ES: This is an open source resource kit 
    specifically for Spanish legal text processing. It includes a very large corpus (over 1 billion words) of legislative and administrative documents in Spanish from various jurisdictions, along with pre-trained word embeddings and topic models tailored to legal language. The corpus is preprocessed with SpaCy, and embeddings are generated with Gensim, making it suitable for downstream NLP tasks like information extraction, semantic similarity, and topic navigation in legal texts.
-   * [Legal-ES: A Set of Large Scale Resources for Spanish Legal Text Processing](https://aclanthology.org/2020.lt4gov-1.6/)
-   * [Legal-ES: A Set of Large Scale Resources for Spanish Legal Text Processing](https://www.academia.edu/67138354/Legal_ES_A_Set_of_Large_Scale_Resources_for_Spanish_Legal_Text_Processing)
-   * [Legal-ES: A Set of Large Scale Resources for 
+    * [Legal-ES: A Set of Large Scale Resources for 
+      Spanish Legal Text Processing](https://aclanthology.org/2020.lt4gov-1.6/)
+    * [Legal-ES: A Set of Large Scale Resources for 
+      Spanish Legal Text Processing](https://www.academia.edu/67138354/Legal_ES_A_Set_of_Large_Scale_Resources_for_Spanish_Legal_Text_Processing)
+    * [Legal-ES: A Set of Large Scale Resources for 
      Spanish Legal Text Processing](https://aclanthology.org/2020.lt4gov-1.6.pdf)
-   * [LegalNLP - Natural Language Processing methods for 
+    * [LegalNLP - Natural Language Processing methods for 
      the Brazilian Legal Language](https://www.academia.edu/79909964/LegalNLP_Natural_Language_Processing_methods_for_the_Brazilian_Legal_Language)
 
-* LegalNLP: Although primarily focused on Brazilian 
+  * LegalNLP: Although primarily focused on Brazilian 
 Portuguese, LegalNLP offers methods and tutorials for legal text manipulation that could inspire similar approaches for Spanish legal texts.
-  * [LegalNLP - Natural Language Processing Methods for the Brazilian Legal Language](https://github.com/felipemaiapolo/legalnlp)
-  * [LegalNLP - Natural Language Processing methods for the Brazilian Legal Language](https://www.academia.edu/79909964/LegalNLP_Natural_Language_Processing_methods_for_the_Brazilian_Legal_Language)
+    * [LegalNLP - Natural Language Processing Methods for 
+     the Brazilian Legal Language](https://github.com/felipemaiapolo/legalnlp)
+    * [LegalNLP - Natural Language Processing methods for 
+     the Brazilian Legal Language](https://www.academia.edu/79909964/LegalNLP_Natural_Language_Processing_methods_for_the_Brazilian_Legal_Language)
 
 These resources provide a solid foundation for Spanish legal language understanding and can be adapted or extended for Costa Rican law.
 
-2. Main Components and Steps to Build the System Using Open Source Frameworks
+2. Main Components and Steps to Build the System Using 
+   Open Source Frameworks
 
 A. Legal Text Preprocessing and Representation
+
 Use SpaCy with Spanish language models to tokenize, lemmatize, and parse legal texts. SpaCy supports custom pipelines and can be extended with domain-specific models.
 
 Apply Legal-ES embeddings or train domain-specific embeddings with Gensim on Costa Rican legal corpora to capture legal semantics.
@@ -171,7 +177,7 @@ Facts (case-specific details)
 Rules and conditions stated in the law
 
 This can be done by adapting transformer-based models (e.g., BERT multilingual or BETO for Spanish) fine-tuned on annotated legal datasets or using distant supervision from Legal-ES resources.
-    * [Connecting Symbolic Statutory Reasoning with Legal 
+  * [Connecting Symbolic Statutory Reasoning with Legal 
 Information Extraction](https://aclanthology.org/2023.nllp-1.12.pdf)
 
 Use rule-based patterns to complement statistical models, especially for extracting logical conditions and legal references.
@@ -214,6 +220,7 @@ No fully integrated open source system currently exists that directly performs a
 * https://aclanthology.org/2023.nllp-1.12.pdf
 
 References to Support Development
+
 Legal-ES: Large scale Spanish legal corpus and embeddings.
 * https://aclanthology.org/2020.lt4gov-1.6/
 * https://www.academia.edu/67138354/Legal_ES_A_Set_of_Large_Scale_Resources_for_Spanish_Legal_Text_Processing
@@ -225,7 +232,6 @@ PROLEG: Logic programming framework for legal reasoning, integrating fact extrac
 
 Recent research on connecting legal information extraction with symbolic statutory reasoning shows high performance is achievable and critical for downstream reasoning tasks.
 * https://aclanthology.org/2023.nllp-1.12.pdf
-
 
 NLP tools like SpaCy and transformer models can be adapted for Spanish legal text processing.
 
