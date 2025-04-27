@@ -349,7 +349,441 @@ References:
 * [Alda: Integrating Logic Rules with Everything Else, Seamlessly](https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/integrating-logic-rules-with-everything-else-seamlessly/43F7B71F2B4A27FAB6BFF7EFC0C58EF6)
 * [XAI-LAW: Logic Programming Tool for Explaining Legal Decisions](https://ceur-ws.org/Vol-3733/short3.pdf)
 
-### Previous Systems to Consider
+#### ChatGPT's answer
+[2025-04-27 5:00](https://chatgpt.com/c/680e0d7e-1ee8-8000-85da-c03101a70379)
+
+##### Initial anwwer
+Got it — you're looking for an open source solution for automatically extracting facts and rules from legal Spanish texts (Costa Rican law) to feed a symbolic reasoning system (like Prolog, ASP, Datalog, etc.) to answer deep legal questions (e.g., contradictions, permissions).
+
+I'll give you a careful expert answer, organized exactly how you asked:
+First (a): check if there’s a ready system,
+then (b): detailed plan to build one if needed.
+
+(a) Are there fully open source systems that already do this?
+Short answer:
+→ No full system exists that does exactly all of what you described, especially for Spanish legal texts.
+There are partial pieces: parsers, knowledge extraction tools, legal ontologies, but no complete "out-of-the-box" solution.
+
+Closest open tools or components:
+
+spaCy + spaCy Spanish models — fast, strong open-source NLP foundation for Spanish
+
+Stanford CoreNLP — supports Spanish; excellent for parsing, dependency analysis (important for logical structure).
+
+LeXeMe (Legal Knowledge Extraction in Multilingual Environments) — EU project, open source, but it's mostly English-focused.
+
+LUIMA (Legal Information Extraction and Entailment) — old, in English only.
+
+Legal-ES — a small Spanish legal corpus used for some NLP experiments.
+
+RoboLaw, CODEX projects — conceptual designs, but no full open system.
+
+Summary:
+There are open frameworks that help process legal text, but not a complete pipeline from Costa Rican Spanish legal text to logical rules and fact bases.
+
+(b) How to build such a system? (using fully open source components)
+Here's a realistic architecture for your project:
+
+1. Preprocessing (Text cleaning & normalization)
+Goal: Clean raw legal texts (PDFs, DOCs, websites) into structured, plain Spanish text.
+
+Tools:
+
+pdfminer.six or Apache Tika for extracting text.
+
+spaCy Spanish tokenizer for basic tokenization.
+
+Custom cleaning rules for weird formatting typical in legal docs (e.g., "Artículo", Roman numerals).
+
+2. Linguistic Analysis (Parsing)
+Goal: Understand the grammatical structure deeply.
+
+Tools:
+
+spaCy + es_core_news_lg (large Spanish model)
+→ POS tagging, dependency parsing.
+
+Stanford CoreNLP (Spanish models)
+→ Deeper constituency parsing (phrases and clauses).
+
+Why important?
+Laws have modalities ("must", "may", "must not"), conditionals ("if... then..."), exceptions, negations — parsing identifies them.
+
+3. Legal Knowledge Extraction (facts, rules)
+Goal: Identify and extract:
+
+Entities (e.g., "person", "contract", "government agency")
+
+Relations ("must pay", "is authorized to")
+
+Modality (obligation, permission, prohibition)
+
+Conditionals (if-then structures)
+
+Tools:
+
+Custom extraction rules using spaCy's Matcher or Ruler components.
+
+Dependency pattern matching to catch "modality + verb + object" constructions.
+
+Transformers (e.g., roberta-base-bne or BETO fine-tuned for legal Spanish)
+→ For more flexible extraction.
+
+Example Output:
+
+```prolog
+```
+must(person(X), pay(contract(Y))).
+prohibited(company(X), dismiss(employee(Y))).
+if(late(payment(X)), penalty(imposed(X))).
+4. Semantic Representation (Logical Forms)
+Goal: Formalize extracted facts/rules into a logical language.
+
+Options:
+
+Prolog predicates
+
+Answer Set Programming (ASP) rules
+
+Datalog facts
+
+You must define an ontology for the domain:
+
+Actions: pay/2, dismiss/2
+
+Roles: employee/1, company/1
+
+Modalities: must/2, may/2, prohibited/2
+
+Conditions: if/2
+
+5. Reasoning Engine (Symbolic Inference)
+Goal: Given facts and rules, answer deep questions.
+
+Tools:
+
+SWI-Prolog (best open-source Prolog system)
+
+Clingo (ASP solver)
+
+Datalog Engines like LogicBlox (if you need database integration).
+
+Example capabilities:
+
+Contradiction detection:
+If both must(X, do(Y)) and prohibited(X, do(Y)) exist → contradiction.
+
+Permission checking:
+Query for may(X, do(Y)) or must(X, do(Y)) or prohibited(X, do(Y)).
+
+6. Question-Answering Interface (Optional)
+Goal: Allow users to input natural language questions.
+
+Options:
+
+Map NL questions → logic queries via templates.
+
+Use Rasa NLU or simple intent classification models.
+
+Example:
+"Is it legal for a company to fire an employee for being pregnant?"
+→ Map to:
+
+```prolog
+```
+prohibited(company(X), dismiss(employee(pregnant(Y)))).
+→ Then query the knowledge base.
+
+Overall Diagram:
+scss
+Copiar
+Editar
+Legal Texts (Costa Rica) 
+   ↓
+Text Extraction (pdfminer, spaCy)
+   ↓
+Syntactic Parsing (spaCy, CoreNLP)
+   ↓
+Information Extraction (Rules + Patterns)
+   ↓
+Logical Form Encoding (Prolog / ASP)
+   ↓
+Symbolic Reasoner (SWI-Prolog / Clingo)
+   ↓
+Answers to Questions (GUI or CLI)
+In short:
+✅ You can build it fully open source.
+✅ No single ready-made system exists, but all building blocks are available.
+
+If you want, I can also sketch a more detailed plan (including specific libraries to install, what to code first, and an example prototype setup).
+Would you like me to do that next? 🚀
+
+##### Si desarrollo un sistema usando resultados de chatGPT, ¿incurro en obligaciones de licenciamiento de algún tipo hacia OpenAI o puedo usar mi sistema en forma completamente cerrada?
+[2025-04-27 05:14](https://chatgpt.com/c/680e1117-8c60-8000-a68f-92177c5bec3d)
+
+##### 🛡️ Checklist legal y de uso de contenidos generados por ChatGPT
+1. ✅ Revisión de Términos de Uso de OpenAI
+
+Asegúrate de que el uso que haces del contenido cumple los Términos de Uso actuales.
+(Si quieres te paso un resumen en español también.)
+
+2. ✅ No afirmes que OpenAI valida o garantiza tu contenido
+
+No digas cosas como “OpenAI certifica que…” o “contenido aprobado por OpenAI”.
+
+3. ✅ Controla la presencia de derechos de autor de terceros
+
+Si el output incluye nombres de marcas, textos literales de libros, código de librerías externas, etc., revisa que no estés usando algo que pertenezca a otros sin permiso.
+
+(Especialmente importante si pides que reproduzca textos, canciones, etc.)
+
+4. ✅ No uses el contenido para entrenar otros modelos sin chequear las condiciones
+
+Si solo estás usando los outputs para crear un sistema (no para entrenar otra IA), no hay problema.
+
+5. ✅ Cumple las leyes locales de privacidad y protección de datos
+
+Si el sistema maneja datos personales, asegúrate de cumplir regulaciones como GDPR, LOPI, etc. (Esto ya no es de OpenAI, pero es importante.)
+
+6. ✅ Menciona OpenAI solo si quieres (no estás obligado)
+
+Puedes decir que usaste OpenAI o ChatGPT como herramienta de asistencia si quieres, pero no es obligatorio.
+
+7. ✅ Conserva registros del contenido generado importante
+
+Por si en algún momento necesitas demostrar que el contenido fue generado por IA.
+
+##### Please sketch a more detailed plan
+Perfect! Let’s dive deep and lay out a detailed practical plan, step-by-step, for Ubuntu 24.10.
+I'll include specific libraries, what to code first, dev environment setup, and example prototype milestones.
+
+🛠️ 1. Development Environment Setup
+On your Ubuntu 24.10:
+
+Basic System Packages:
+```bash
+sudo apt update
+sudo apt install python3 python3-pip python3-venv openjdk-21-jre-headless git make gcc
+```
+* Python 3 (standard)
+* Java 21+ (needed for Stanford CoreNLP)
+
+🛠️ 2. Create Python Virtual Environment
+```bash
+python3 -m venv legal-nlp-env
+source legal-nlp-env/bin/activate
+pip install --upgrade pip
+```
+
+🛠️ 3. Install NLP Libraries
+Inside the legal-nlp-env:
+
+```bash
+pip install spacy stanza transformers torch
+pip install pdfminer.six
+pip install fastapi uvicorn
+```
+spacy — NLP toolkit
+
+stanza — Stanford's official Python NLP wrapper (with Spanish)
+
+transformers — HuggingFace models (if needed for semantic extraction)
+
+pdfminer.six — PDF text extraction
+
+fastapi + uvicorn — later, if you want a lightweight API.
+
+Download Spanish models:
+
+```bash
+python -m spacy download es_core_news_lg
+python -m stanza.download('es')
+```
+🛠️ 4. Download Stanford CoreNLP (optional for deeper parsing)
+```bash
+mkdir corenlp
+cd corenlp
+wget https://nlp.stanford.edu/software/stanford-corenlp-latest.zip
+unzip stanford-corenlp-latest.zip
+cd ..
+```
+
+You can interact via stanza or REST API.
+
+🛠️ 5. Install Symbolic Reasoner (Prolog)
+```bash
+sudo apt install swi-prolog
+```
+SWI-Prolog is powerful, open source, very well-documented.
+
+Optionally for ASP:
+
+```bash
+sudo apt install clingo
+```
+📋 6. Project Structure
+```plaintext
+legal_reasoning_project/
+│
+├── data/                  # Raw legal texts (input)
+├── extraction/             # Code to parse and extract facts/rules
+├── logic_base/             # Output: Prolog facts/rules
+├── reasoning/              # Querying and contradiction checking
+├── api/                    # (Optional) REST API with FastAPI
+├── models/                 # Fine-tuned NLP models (optional)
+├── scripts/                # CLI scripts
+└── README.md
+```
+
+🚀 7. Development Plan (Milestones)
+Milestone 1: Basic Text Extraction
+Input: Costa Rica law PDFs
+
+Goal: Get clean text.
+
+Task:
+
+Use pdfminer.six to extract text.
+
+Normalize (remove extra spaces, line breaks).
+
+Prototype Code:
+
+```python
+from pdfminer.high_level import extract_text
+
+def extract_text_from_pdf(path):
+    return extract_text(path)
+
+raw_text = extract_text_from_pdf('data/law_example.pdf')
+print(raw_text[:1000])
+```
+Milestone 2: Basic Syntactic Parsing
+Input: Cleaned text
+
+Goal: Tokenize sentences, extract grammatical structure.
+
+Task:
+
+Use spaCy Spanish model.
+
+Prototype Code:
+
+```python
+import spacy
+
+nlp = spacy.load("es_core_news_lg")
+
+def parse_sentences(text):
+    doc = nlp(text)
+    for sent in doc.sents:
+        print(sent.text)
+
+parse_sentences(raw_text)
+```
+Milestone 3: Modalities Extraction (Obligation, Permission, Prohibition)
+Input: Sentences
+
+Goal: Find patterns like "debe", "puede", "prohibido".
+
+Strategy:
+
+Use spaCy’s Matcher.
+
+Define patterns for obligation/permission.
+
+Prototype Code:
+
+```python
+from spacy.matcher import Matcher
+
+matcher = Matcher(nlp.vocab)
+
+pattern_must = [{"LEMMA": "deber"}, {"POS": "VERB"}]
+pattern_can = [{"LEMMA": "poder"}, {"POS": "VERB"}]
+pattern_prohibited = [{"LOWER": "prohibido"}]
+
+matcher.add("MUST", [pattern_must])
+matcher.add("CAN", [pattern_can])
+matcher.add("PROHIBITED", [pattern_prohibited])
+
+def extract_modalities(doc):
+    matches = matcher(doc)
+    for match_id, start, end in matches:
+        span = doc[start:end]
+        print(f"Detected {nlp.vocab.strings[match_id]}: {span.text}")
+
+doc = nlp(raw_text)
+extract_modalities(doc)
+```
+Milestone 4: Fact and Rule Extraction
+Input: Modalities + Subjects + Actions
+
+Goal: Generate simple logical rules.
+
+Example mapping:
+
+X debe Y → must(X, Y).
+
+X puede Y → may(X, Y).
+
+X está prohibido de Y → prohibited(X, Y).
+
+Store facts into .pl files (Prolog source files).
+
+Milestone 5: Symbolic Reasoning (Prolog)
+Goal: Load facts and answer questions.
+
+Prototype Prolog file (knowledge_base.pl):
+
+```prolog
+must(persona(pedro), pagar(contrato(alquiler))).
+prohibited(empresa, despedir(mujer_embarazada)).
+
+contradicts(Action) :- must(X, Action), prohibited(X, Action).
+```
+Run Query:
+
+```prolog
+?- consult('knowledge_base.pl').
+?- contradicts(Action).
+```
+Find contradictions automatically!
+
+Milestone 6: Optional: Simple Question-Answering API
+Set up a FastAPI server:
+
+```python
+from fastapi import FastAPI
+import subprocess
+
+app = FastAPI()
+
+@app.get("/check_permission")
+def check_permission(action: str):
+    query = f"may(_, {action})."
+    result = subprocess.run(["swipl", "-s", "logic_base/knowledge_base.pl", "-g", query, "-t", "halt"], capture_output=True)
+    return {"result": result.stdout.decode()}
+```
+📈 Later improvements:
+Train a Transformer on Costa Rican legal text for better extraction.
+
+Handle exceptions ("excepto", "salvo que").
+
+Build a contradiction graph (show visually where laws conflict).
+
+✨ Summary Table
+
+Step | Tools | Deliverable
+---|---|---
+Extract text | pdfminer.six | Plaintext files
+Parse sentences | spaCy | Tokenized sentences
+Extract rules | spaCy Matcher | Detected modalities
+Map to logic | Python | Prolog facts/rules
+Reasoning | SWI-Prolog | Answers, contradictions
+Optional API | FastAPI | REST endpoint
+
+# Resources
 
 ## Resource Lists
 
@@ -444,6 +878,12 @@ FreeLing is a C++ library providing language analysis functionalities (morpholog
 The OASIS project: an open-source framework for legal knowledge representation and reasoning.
 
 LegalRuleML: an XML-based language for representing legal rules and regulations.
+
+Stanza: another powerful NLP library with support for Spanish, providing high-performance, streamlined processing of text data.
+
+Legal-ES: This is an open source resource kit 
+specifically for Spanish legal text processing.
+
 
 ### ASP in Swi-Prolog
 #### [s(CASP) SWISH site](https://swish.swi-prolog.org/example/scasp.swinb)
