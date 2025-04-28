@@ -143,7 +143,7 @@ To develop a system that reads Spanish legal texts (specifically Costa Rican law
    specifically for Spanish legal text processing. It includes a very large corpus (over 1 billion words) of legislative and administrative documents in Spanish from various jurisdictions, along with pre-trained word embeddings and topic models tailored to legal language. The corpus is preprocessed with SpaCy, and embeddings are generated with Gensim, making it suitable for downstream NLP tasks like information extraction, semantic similarity, and topic navigation in legal texts.
     * Legal-ES: A Set of Large Scale Resources for 
       Spanish Legal Text Processing
-      * [pdf](Legal-ES-2020.lt4gov-1.6.pdf) 
+      * [pdf](papers/Legal-ES-2020.lt4gov-1.6.pdf) 
       * [https://aclanthology.org/2020.lt4gov-1.6/](https://aclanthology.org/2020.lt4gov-1.6/)
       * [https://www.academia.
         edu/67138354/Legal_ES_A_Set_of_Large_Scale_Resources_for_Spanish_Legal_Text_Processing](https://www.academia.edu/67138354/Legal_ES_A_Set_of_Large_Scale_Resources_for_Spanish_Legal_Text_Processing)
@@ -355,7 +355,7 @@ References:
 ## ChatGPT's answer
 [2025-04-27 5:00](https://chatgpt.com/c/680e0d7e-1ee8-8000-85da-c03101a70379)
 
-### Initial anwwer
+### Initial answer
 Got it — you're looking for an open source solution for automatically extracting facts and rules from legal Spanish texts (Costa Rican law) to feed a symbolic reasoning system (like Prolog, ASP, Datalog, etc.) to answer deep legal questions (e.g., contradictions, permissions).
 
 I'll give you a careful expert answer, organized exactly how you asked:
@@ -498,9 +498,7 @@ prohibited(company(X), dismiss(employee(pregnant(Y)))).
 → Then query the knowledge base.
 
 Overall Diagram:
-scss
-Copiar
-Editar
+```text
 Legal Texts (Costa Rica) 
    ↓
 Text Extraction (pdfminer, spaCy)
@@ -514,6 +512,7 @@ Logical Form Encoding (Prolog / ASP)
 Symbolic Reasoner (SWI-Prolog / Clingo)
    ↓
 Answers to Questions (GUI or CLI)
+```
 In short:
 ✅ You can build it fully open source.
 ✅ No single ready-made system exists, but all building blocks are available.
@@ -796,18 +795,18 @@ Optional API | FastAPI | REST endpoint
 
 ## Articles
 
-### [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](2023.semeval-1.318.pdf)
+### [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](papers/2023.semeval-1.318.pdf)
 
 From https://aclanthology.org/2023.semeval-1.318.pdf
 
-### [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text 2307.07696v1.pdf)
+### [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](papers/Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text 2307.07696v1.pdf)
 
 From: Joohyung Lee
 [v1] Sat, 15 Jul 2023 
 03:29:59 UTC (2,765 KB)
 https://arxiv.org/abs/2307.07696
 
-### [Weakly supervised semantic parsing with abstract examples](Weakly supervised semantic parsing with abstract examples P18-1168.pdf)
+### [Weakly supervised semantic parsing with abstract examples](papers/Weakly supervised semantic parsing with abstract examples P18-1168.pdf)
 Omer Goldman, Veronica Latcinnik, Ehud Nave, Amir
 Globerson, and Jonathan Berant. 2018. **Weakly supervised semantic parsing with abstract examples**. In
 Proceedings of the 56th Annual Meeting of the As-
@@ -815,31 +814,31 @@ sociation for Computational Linguistics (Volume 1:
 Long Papers), pages 1809–1819.
 https://aclanthology.org/P18-1168/
 
-### [Natural language processing in the era of large language models](Natural language processing in the era of large language models frai-06-1350306.pdf)
+### [Natural language processing in the era of large language models](papers/Natural language processing in the era of large language models frai-06-1350306.pdf)
 SPECIALTY GRAND CHALLENGE article
 Front. Artif. Intell. , 11 January 2024
 Sec. Natural Language Processing
 Volume 6 - 2023 | https://doi.org/10.3389/frai.2023.1350306
 
-### [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](A_Study_on_the_Implementation_of_Generative_AI_Ser.pdf)
+### [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](papers/A_Study_on_the_Implementation_of_Generative_AI_Ser.pdf)
 September 2023
 DOI:10.48550/arXiv.2309.01105
 LicenseCC BY-NC-ND 4.0
 
 https://www.researchgate.net/publication/373685686_A_Study_on_the_Implementation_of_Generative_AI_Services_Using_an_Enterprise_Data-Based_LLM_Application_Architecture
 
-### [Answer set programming](answer-set-programming-978-3-030-24658-7_compress.pdf)
+### [Answer set programming](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
 Vladimir Lifschitz. 2019. Answer set programming. Springer Heidelberg
 https://link.springer.com/book/10.1007/978-3-030-24658-7#toc
 
 ### [Answer set programming - Wikipedia](https://en.wikipedia.org/wiki/Answer_set_programming)
 
-### [Constraint Answer Set Programming without Grounding](answer-set-programming-978-3-030-24658-7_compress.pdf)
+### [Constraint Answer Set Programming without Grounding](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
 https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/constraint-answer-set-programming-without-grounding/55A678C618EF54487777F021D89B3FE7
 
 ### [Stable model semantics - Wikipedia](https://en.wikipedia.org/wiki/Stable_model_semantics)
 
-### [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](Retrieval-Augmented Semantic Parsing Using Large Language Models to Improve Generalization 2412.10207v1.pdf)
+### [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](papers/Retrieval-Augmented Semantic Parsing Using Large Language Models to Improve Generalization 2412.10207v1.pdf)
 https://arxiv.org/html/2412.10207v1
 
 ### More References
@@ -850,52 +849,4 @@ pages 412–416.
 Joseph Babb and Joohyung Lee. 2012. _Module theorem for 
 the general theory of stable models_. Theory and
 Practice of Logic Programming, 12(4-5):719–735.
-
-## Frameworks and Libraries
-
-### [Flair](https://github.com/flairNLP/flair)
-A very simple framework for state-of-the-art NLP. Developed by Humboldt University of Berlin and friends.
-
-### [TextBlob](https://github.com/sloria/TextBlob)
-#### [https://textblob.readthedocs.io/en/dev/](https://textblob.readthedocs.io/en/dev/)
-    * TextBlob is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, and more.
-
-### [spaCy](https://spacy.io)
-#### [Usage](https://spacy.io/usage)
-#### [Mastering spaCy - Second Edition](https://learning.oreilly.com/library/view/mastering-spacy/9781835880463/)
-#### [NLP_APP](https://github.com/sharonreshma/NLP_APP)
-#### [NLP Pipeline with SpaCy & TextBlob](https://github.com/AqueeqAzam/Complete-NLP-pipeline-using-SpaCy)
-
-### [FreeLing](https://nlp.lsi.upc.edu/freeling/)
-*Could not install it in Ubuntu 24.10 - Oracular Oriole*
-
-FreeLing is a C++ library providing language analysis functionalities (morphological analysis, named entity detection, PoS-tagging, parsing, Word Sense Disambiguation, Semantic Role Labelling, etc.) for a variety of languages (English, Spanish, Portuguese, Italian, French, German, Russian, Catalan, Galician, Croatian, Slovene, among others).
-
-## Knowledge Graphs
-### [How to Convert Any Text Into a Graph of Concepts](https://towardsdatascience.com/how-to-convert-any-text-into-a-graph-of-concepts-110844f22a1a/)
-### [Text to Knowledge Graph Made Easy with Graph Maker](https://towardsdatascience.com/text-to-knowledge-graph-made-easy-with-graph-maker-f3f890c0dbe8/)
-
-
-## Systems
-
-The OASIS project: an open-source framework for legal knowledge representation and reasoning.
-
-LegalRuleML: an XML-based language for representing legal rules and regulations.
-
-Stanza: another powerful NLP library with support for Spanish, providing high-performance, streamlined processing of text data.
-
-Legal-ES: This is an open source resource kit 
-specifically for Spanish legal text processing.
-
-
-### ASP in Swi-Prolog
-#### [s(CASP) SWISH site](https://swish.swi-prolog.org/example/scasp.swinb)
-
-#### [s(CASP) for SWI-Prolog](sCASP for Swi-Prolog gdeinvited4.pdf)
-Jan Wielemaker, Joaquín Arias and Gopal Gupta4
-https://ceur-ws.org/Vol-2970/gdeinvited4.pdf
-
-
-
-
 
