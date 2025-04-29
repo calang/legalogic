@@ -23,3 +23,7 @@ stop = time.time()
 # print the sentence with all annotations
 print(sentence)
 print(f"Time: {stop - start} s")
+
+# iterate over all labels and print
+for label in sentence.get_labels():
+    print(label)
