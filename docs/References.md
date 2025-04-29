@@ -137,6 +137,7 @@ Volume 6 - 2023 | https://doi.org/10.3389/frai.2023.1350306
   * https://arxiv.org/html/2412.10207v1
 * [LawGiBa: Combining GPT, knowledge bases, and Prolog for legal assistance](https://ebooks.iospress.nl/doi/10.3233/FAIA230991)
   * [pdf](papers/FAIA-379-FAIA230991.pdf)
+* [Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools](https://arxiv.org/abs/2405.20362)
 
 
 ## More References
