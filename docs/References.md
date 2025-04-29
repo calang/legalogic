@@ -6,7 +6,14 @@ project.
 ## Recommendations from LLM Systems
 Compiled [here](Arch_Recom_from_LLMs.md).
 
+
 ## Libraries
+
+### Flair
+A very simple framework for state-of-the-art NLP. Developed by Humboldt University of Berlin and friends.
+* [On Github](https://github.com/flairNLP/flair)
+* [Flair Documentation Page](https://flairnlp.github.io/docs/intro) - Initial tutorials.
+* [Latest release](https://github.com/flairNLP/flair/releases): 0.15.1, Feb 5 2025
 
 ### [spaCy](https://spacy.io)
   * A popular open-source NLP library with 
@@ -15,7 +22,9 @@ Compiled [here](Arch_Recom_from_LLMs.md).
   * [Usage](https://spacy.io/usage)
   * [Mastering spaCy - Second Edition](https://learning.oreilly.com/library/view/mastering-spacy/9781835880463/)
   * [NLP_APP](https://github.com/sharonreshma/NLP_APP)
+    * This Streamlit-based application leverages spaCy, a leading NLP library, to perform advanced text processing tasks. Users can analyze text by tokenizing, visualizing part-of-speech tags, identifying named entities, and performing lemmatization.
   * [NLP Pipeline with SpaCy & TextBlob](https://github.com/AqueeqAzam/Complete-NLP-pipeline-using-SpaCy)
+    * This project implements a Natural Language Processing (NLP) pipeline using SpaCy and TextBlob. It covers text processing, named entity recognition (NER), sentiment analysis, rule-based matching, and more, making it useful for chatbots, search engines, sentiment analysis, and text summarization.
 
 ### Stanza
 Another powerful NLP library with support for 
@@ -26,9 +35,6 @@ Supports Spanish; excellent for
 parsing, dependency analysis (important for logical structure).
   * → Deeper constituency parsing (phrases and clauses).
 
-### [Flair](https://github.com/flairNLP/flair)
-A very simple framework for state-of-the-art NLP. Developed by Humboldt University of Berlin and friends.
-
 ### [TextBlob](https://github.com/sloria/TextBlob)
   * [https://textblob.readthedocs.io/en/dev/](https://textblob.readthedocs.io/en/dev/)
   * TextBlob is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, and more.
@@ -38,9 +44,11 @@ A very simple framework for state-of-the-art NLP. Developed by Humboldt Universi
 
   FreeLing is a C++ library providing language analysis functionalities (morphological analysis, named entity detection, PoS-tagging, parsing, Word Sense Disambiguation, Semantic Role Labelling, etc.) for a variety of languages (English, Spanish, Portuguese, Italian, French, German, Russian, Catalan, Galician, Croatian, Slovene, among others).
 
+
 ## Tools
 
 * **pdfminer.six** or Apache Tika for extracting text.
+
 
 ## Languages and Frameworks
 
@@ -86,6 +94,7 @@ Information Extraction](https://aclanthology.org/2023.nllp-1.12.pdf)
   * [Beyond Logic Programming for Legal Reasoning](https://ceur-ws.org/Vol-3437/paper2LPLR.pdf)
 * **LeXeMe** (Legal Knowledge Extraction in Multilingual 
   Environments) — EU project, open source, but it's mostly English-focused.
+
 
 ## Articles
 
