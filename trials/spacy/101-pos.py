@@ -8,4 +8,5 @@ for token in doc:
     print('\t'.join([token.text, token.lemma_, token.pos_, token.tag_, token.dep_,
             token.shape_, str(token.is_alpha), str(token.is_stop)]))
 
-displacy.render(doc, style="dep")
+# displacy.serve(doc, style="dep")
+# displacy.render(doc, style="dep")
