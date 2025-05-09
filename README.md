@@ -95,3 +95,8 @@ Become acquainted with
 and follow the scripts in `Makefile` and `dvc.yaml` files 
 and in the 
 `src` directory.
+
+## Authors
+- [Carlos Lang]
+  - [Linked-in](https://www.linkedin.com/in/carlos-lang-b918893/)
+  - carlos.lang (at) gmail.com
