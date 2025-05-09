@@ -1,13 +1,16 @@
 # Description
 
 # variable definitions, available to all rules
-# REPO_ROOT := $(shell git rev-parse --show-toplevel)  # root directory of this git repo
+# root directory of this git repo
+REPO_ROOT := $(shell git rev-parse --show-toplevel)
 # BRANCH := $(shell git branch --show-current)
 # BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+LOCAL_REMOTE_DIR := /home/calang/proyects/dvc_localremote/legalogic
 # Notes:
 # all env variables are available
 # = uses recursive substitution
 # :=  uses immediate substitution
+
 
 # ENV_NAME is second word, separated by one space, in file env.yml
 ENV_NAME := $(shell head -1 env.yml | cut -d ' ' -f 2)
@@ -51,6 +54,13 @@ spacy:	update-env
 	python -m spacy download es_core_news_md
 	python -m spacy download es_core_news_lg
 	python -m spacy download es_dep_news_trf
+
+# target: dvc-init
+dvc-init:
+	[ -d .dvc ] || dvc init
+	mkdir -p data/rawdata
+	mkdir -p ${LOCAL_REMOTE_DIR}
+	dvc remote add -d localremote ${LOCAL_REMOTE_DIR}
 
 # target: jupl - start jupiter lab server
 jupl:	ALWAYS
