@@ -5,7 +5,7 @@
 REPO_ROOT := $(shell git rev-parse --show-toplevel)
 # BRANCH := $(shell git branch --show-current)
 # BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-LOCAL_REMOTE_DIR := /home/calang/proyects/dvc_localremote/legalogic
+LOCAL_REMOTE_DIR := $(shell grep LOCAL_REMOTE_DIR .env | cut -d = -f 2)
 # Notes:
 # all env variables are available
 # = uses recursive substitution
@@ -25,6 +25,9 @@ help:
 	@echo "  where <target> may be"
 	@echo
 	@egrep -h "^# target:" [Mm]akefile | sed -e 's/^# target: //'
+#	@echo
+#	@echo REPO_ROOT=${REPO_ROOT}
+#	@echo LOCAL_REMOTE_DIR=${LOCAL_REMOTE_DIR}
 
 
 # # target: .venv - create local venv
@@ -44,7 +47,7 @@ update-env:
 rm-env:
 	conda env remove -n ${ENV_NAME}
 
-# target: spacy -
+# target: spacy - download language models
 spacy:	update-env
 	python -m spacy download en_core_web_sm
 	python -m spacy download en_core_web_md
@@ -62,7 +65,7 @@ dvc-init:
 	mkdir -p ${LOCAL_REMOTE_DIR}
 	dvc remote add -d localremote ${LOCAL_REMOTE_DIR}
 
-# target: jupl - start jupiter lab server
+# target: jupl - start (run) jupiter lab server
 jupl:	ALWAYS
 	@${TF_SETENV}; jupyter lab &
 
