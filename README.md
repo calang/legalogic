@@ -69,8 +69,13 @@ dependencies
 Note: The corresponding version of Python will be 
   installed when the mamba environment is created, below.
 
+### Clone the repo in the local system
+```shell
+git clone https://github.com/calang/legalogic.git
+```
+
 ### Edit `.env` file
-To adjust environment variables to the local 
+Adjusting environment variables to the local 
 system.
 
 ### Create conda (mamba) environment
