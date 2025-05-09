@@ -1,0 +1,7 @@
+stages:
+  constitucion_cr_raw:
+    cmd: wget 
+      http://www.pgrweb.go.cr/TextoCompleto/NORMAS/1/VIGENTE/C/1940-1949/1945-1949/1949/367/871_138995-26.html
+      --output-document=data/rawdata/constitucion_cr.html
+    outs:
+    - data/rawdata/constitucion_cr.html
