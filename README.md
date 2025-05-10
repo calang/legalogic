@@ -5,12 +5,12 @@ A system to query Costa Rica legal content, based on logic.
 ## Background
 While LLMs (Large Language Models) have become the to-go 
 systems to query about general knowledge, they make 
-mistakes, producing wrong answers, with some frequency.
+mistakes, producing wrong answers with some frequency.
 
 There are environments where precision in the answers is 
 a must.
 
-As an alternative to producing the answer to a 
+As an alternative method to producing the answer to a 
 question, we may also refer to logic.  This is an 
 approach that has become less popular, over time, due to 
 the success of LLMs and also due to its typical labor 
@@ -22,10 +22,11 @@ answer questions on Costa Rica legislation.
 
 The idea is using modern models like LLMs for human 
 interface of the system, while using logic to produce 
-the actual content of the generated answers.
+the generated answers.
 
 Main objectives are
-- producing answers from literal legal contents
+- develop a scalable pipeline, as automated as possible
+- produce answers from legal contents 
 - develop the capability to detect contradictions across 
   different legal contents
 
