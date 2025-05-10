@@ -105,3 +105,6 @@ and in the
 - [Carlos Lang]
   - [Linked-in](https://www.linkedin.com/in/carlos-lang-b918893/)
   - carlos.lang (at) gmail.com
+
+## Possible additions
+- Use `poetry` to build and publish.
