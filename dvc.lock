@@ -3,9 +3,9 @@ stages:
   constitucion_cr_raw:
     cmd: wget 
       http://www.pgrweb.go.cr/TextoCompleto/NORMAS/1/VIGENTE/C/1940-1949/1945-1949/1949/367/871_138995-26.html
-      --output-document=data/rawdata/constitucion_cr.html
+      --output-document=data/rawdata/constitucion_cr-26.html
     outs:
-    - path: data/rawdata/constitucion_cr.html
+    - path: data/rawdata/constitucion_cr-26.html
       hash: md5
-      md5: 9044e55c53637e9a30c0c6072a7c28a9
-      size: 396797
+      md5: 46870249b32180edb75be65ae56807e9
+      size: 396798
