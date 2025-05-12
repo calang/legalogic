@@ -60,6 +60,15 @@ specifically Ubuntu 24.10.
 If you want to use it in a different development 
 environment, you will need to do the appropriate changes.
 
+The repo is 
+based on Python, Python-related utilities, SWI-Prolog 
+and Makefiles, 
+which are all available on the most common platforms.
+We hope you 
+should be able to run the code in this repo on 
+other platforms with minimal 
+adjustments.
+
 ### Install environment dependencies
 Before using this repo, you will need to install these 
 dependencies
