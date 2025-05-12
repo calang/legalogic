@@ -140,6 +140,9 @@ and in the
 
 ### Tools
 - [PyCharm](https://www.jetbrains.com/pycharm/)
+- Maybe, with Dvc, eventually:
+  - [Studio](https://studio.datachain.ai)
+  - [CML](https://github.com/iterative/cml#getting-started)
 
 
 ## Authors
