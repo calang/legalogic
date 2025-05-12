@@ -2,6 +2,24 @@
 
 A system to query Costa Rica legal content, based on logic.
 
+## ToC
+<!-- TOC -->
+* [Legalogic](#legalogic)
+  * [ToC](#toc)
+  * [Background](#background)
+  * [Overall architecture](#overall-architecture)
+  * [Set-up](#set-up)
+    * [Install environment dependencies](#install-environment-dependencies)
+    * [Clone the repo in the local system](#clone-the-repo-in-the-local-system)
+    * [Edit `.env` file](#edit-env-file)
+    * [Create conda (mamba) environment](#create-conda-mamba-environment)
+    * [Initialize other utilities](#initialize-other-utilities)
+  * [How to use](#how-to-use)
+  * [Dependencies](#dependencies)
+  * [Authors](#authors)
+  * [Possible additions](#possible-additions)
+<!-- TOC -->
+
 ## Background
 While LLMs (Large Language Models) have become the to-go 
 systems to query about general knowledge, they make 
@@ -111,8 +129,21 @@ and follow the scripts in `Makefile` and `dvc.yaml` files
 and in the 
 `src` directory.
 
+## Dependencies
+
+### Packages
+- [Mamba](https://github.com/mamba-org/mamba)
+- [Git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu)
+  - [Git Book](https://git-scm.com/book/en/v2)
+- [Dvc](dvc.org)
+- [SWI-Prolog](https://www.swi-prolog.org/)
+
+### Tools
+- [PyCharm](https://www.jetbrains.com/pycharm/)
+
+
 ## Authors
-- [Carlos Lang]
+- Carlos Lang
   - [Linked-in](https://www.linkedin.com/in/carlos-lang-b918893/)
   - carlos.lang (at) gmail.com
 
