@@ -62,11 +62,15 @@ def get_article_list(in_text: str) -> List[str]:
     # split text by 'ARTÍCULO', removing first item
     article_list = re.split('ARTÍCULO|Artículo', article_text, flags=MULTI_FLAG)[1:]
 
-    # replace "ARTÍCULO" in front of each article
-    article_list = list(map(lambda x: "ARTÍCULO" + x, article_list))
+    # restore "ARTÍCULO" in front of each article
+    article_list = ["ARTÍCULO" + x
+                    for x in article_list
+                    ]
 
     # remove any left-over "TITULO ..." from the item text
-    article_list = list(map(lambda x: x.split("TITULO")[0], article_list))
+    article_list = [x.split("TITULO")[0]
+                    for x in article_list
+                    ]
 
     return article_list
 
