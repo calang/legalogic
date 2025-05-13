@@ -20,3 +20,15 @@ stages:
       >data/preprocessed/constitucion_cr.txt
     outs:
     - data/preprocessed/constitucion_cr.txt
+
+  constitucion_sent_cr:
+    deps:
+      - data/preprocessed/constitucion_cr.txt
+      - src/legalogic/prep_docs/constitucion_sentences.py
+    cmd: >
+      python
+      src/legalogic/prep_docs/constitucion_sentences.py
+      data/preprocessed/constitucion_cr.txt
+      >data/preprocessed/constitucion_sent_cr.txt
+    outs:
+    - data/preprocessed/constitucion_sent_cr.txt
