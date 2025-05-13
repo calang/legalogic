@@ -60,7 +60,7 @@ def get_article_list(in_text: str) -> List[str]:
     article_text = in_text.replace('\n', ' ')
 
     # split text by 'ARTÍCULO', removing first item
-    article_list = re.split('ARTÍCULO', article_text, flags=MULTI_FLAG)[1:]
+    article_list = re.split('ARTÍCULO|Artículo', article_text, flags=MULTI_FLAG)[1:]
 
     # replace "ARTÍCULO" in front of each article
     article_list = list(map(lambda x: "ARTÍCULO" + x, article_list))
