@@ -1,3 +1,6 @@
+params:
+  - src/config/config.yaml
+
 stages:
   constitucion_cr_raw:
     cmd: wget 
@@ -5,3 +8,15 @@ stages:
       --output-document=data/rawdata/constitucion_cr-26.html
     outs:
     - data/rawdata/constitucion_cr-26.html
+
+  constitucion_cr:
+    deps:
+      - data/rawdata/constitucion_cr-26.html
+      - src/legalogic/prep_docs/prep_const.py
+    cmd: >
+      python
+      src/legalogic/prep_docs/prep_const.py -v
+      data/rawdata/constitucion_cr-26.html
+      >data/processed/constitucion_cr-26.txt
+    outs:
+    - data/processed/constitucion_cr-26.txt

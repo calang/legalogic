@@ -137,6 +137,7 @@ and in the
   - [Git Book](https://git-scm.com/book/en/v2)
 - [Dvc](dvc.org)
 - [SWI-Prolog](https://www.swi-prolog.org/)
+- other, per `env.yaml` file
 
 ### Tools
 - [PyCharm](https://www.jetbrains.com/pycharm/)

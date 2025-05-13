@@ -9,3 +9,20 @@ stages:
       hash: md5
       md5: 46870249b32180edb75be65ae56807e9
       size: 396798
+  constitucion_cr:
+    cmd: "python src/legalogic/prep_docs/prep_const.py -v data/rawdata/constitucion_cr-26.html
+      >data/processed/constitucion_cr-26.txt\n"
+    deps:
+    - path: data/rawdata/constitucion_cr-26.html
+      hash: md5
+      md5: 46870249b32180edb75be65ae56807e9
+      size: 396798
+    - path: src/legalogic/prep_docs/prep_const.py
+      hash: md5
+      md5: c14b884ab7c6122cf24e2b327c29bebf
+      size: 1541
+    outs:
+    - path: data/processed/constitucion_cr-26.txt
+      hash: md5
+      md5: dd740639f6d1443fae7d5c7247c8038e
+      size: 133899
