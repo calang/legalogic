@@ -3,7 +3,8 @@
 """
 Metaclass to create a singleton class.
 
-Using a metaclass is widely regarded as the most effective and maintainable way to implement a singleton in Python. This approach is thread-safe and allows for clean, reusable code.
+Using a metaclass is widely regarded as the most effective and maintainable way to implement a singleton in Python.
+This approach is thread-safe and allows for clean, reusable code.
 
 Advantages: Clean, reusable, and works well with inheritance.
 
@@ -15,6 +16,7 @@ references:
 """
 
 class Singleton(type):
+    """Singleton superclass"""
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
