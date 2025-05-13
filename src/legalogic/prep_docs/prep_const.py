@@ -46,6 +46,9 @@ def main():
     c_text = re.sub(tag_pattern, '', c_text)
     c_text = re.sub(nbsp_pattern, '', c_text)
 
+    # confirm default output encoding
+    sys.stdout.reconfigure(encoding='utf-8')
+
     print(c_text)
 
 
