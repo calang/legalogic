@@ -17,6 +17,6 @@ stages:
       python
       src/legalogic/prep_docs/prep_const.py
       data/rawdata/constitucion_cr-26.html
-      >data/preprocessed/constitucion_cr-26.txt
+      >data/preprocessed/constitucion_cr.txt
     outs:
-    - data/preprocessed/constitucion_cr-26.txt
+    - data/preprocessed/constitucion_cr.txt
