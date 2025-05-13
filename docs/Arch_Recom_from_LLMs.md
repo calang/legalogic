@@ -3,6 +3,40 @@ To help inform what a sound approach is for developing
 the project, different AI LLM Systems were consulted for 
 their suggestions.
 
+## ToC
+<!-- TOC -->
+* [Recommendations from LLM Systems](#recommendations-from-llm-systems)
+  * [Prompt](#prompt)
+  * [Meta AI's answer](#meta-ais-answer)
+    * [Initial answer](#initial-answer)
+    * [Is the above a practical approach for avoiding hallucinations from an NLP system processing legal content?  Are there any more practical and effective approaches?](#is-the-above-a-practical-approach-for-avoiding-hallucinations-from-an-nlp-system-processing-legal-content-are-there-any-more-practical-and-effective-approaches)
+  * [Perplexity AI's](#perplexity-ais)
+    * [First answer](#first-answer)
+    * [How can I integrate Legal-ES with a logic programming framework](#how-can-i-integrate-legal-es-with-a-logic-programming-framework)
+    * [What are the best logic programming frameworks for integrating with Legal-ES](#what-are-the-best-logic-programming-frameworks-for-integrating-with-legal-es)
+  * [ChatGPT's answer](#chatgpts-answer)
+    * [Initial answer](#initial-answer-1)
+    * [Si desarrollo un sistema usando resultados de chatGPT, ¿incurro en obligaciones de licenciamiento de algún tipo hacia OpenAI o puedo usar mi sistema en forma completamente cerrada?](#si-desarrollo-un-sistema-usando-resultados-de-chatgpt-incurro-en-obligaciones-de-licenciamiento-de-algún-tipo-hacia-openai-o-puedo-usar-mi-sistema-en-forma-completamente-cerrada)
+    * [🛡️ Checklist legal y de uso de contenidos generados por ChatGPT](#-checklist-legal-y-de-uso-de-contenidos-generados-por-chatgpt)
+    * [Please sketch a more detailed plan](#please-sketch-a-more-detailed-plan)
+* [Resources](#resources)
+  * [Resource Lists](#resource-lists)
+    * [Legal Text Analytics](#legal-text-analytics)
+    * [Legal Natural Language Processing](#legal-natural-language-processing)
+  * [Articles](#articles)
+    * [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](#semeval-2023-task-6--legaleval---understanding-legal-texts)
+    * [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](#coupling-large-language-models-with-logic-programming-for-robust-and-general-reasoning-from-text)
+    * [Weakly supervised semantic parsing with abstract examples](#weakly-supervised-semantic-parsing-with-abstract-examples)
+    * [Natural language processing in the era of large language models](#natural-language-processing-in-the-era-of-large-language-models)
+    * [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](#a-study-on-the-implementation-of-generative-ai-services-using-an-enterprise-data-based-llm-application-architecture)
+    * [Answer set programming](#answer-set-programming)
+    * [Answer set programming - Wikipedia](#answer-set-programming---wikipedia)
+    * [Constraint Answer Set Programming without Grounding](#constraint-answer-set-programming-without-grounding)
+    * [Stable model semantics - Wikipedia](#stable-model-semantics---wikipedia)
+    * [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](#retrieval-augmented-semantic-parsing--using-large-language-models-to-improve-generalization)
+    * [More References](#more-references)
+<!-- TOC -->
+
 ## Prompt
 I want to develop a system that reads legal text in Spanish, for Costa Rica law and derives  a series of facts and rules that can layer be used by a symbolic reasoning system using Logic Programming, to answer questions related to the text. Some example question may a form such as "are there any contradictions in this body of laws?", or "is it legal or allowed to do such and such".
 
