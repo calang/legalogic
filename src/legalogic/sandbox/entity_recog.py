@@ -12,6 +12,7 @@ from typing import List
 
 import pandas as pd
 import spacy
+from spacy.tokens import Span, Token
 
 
 def set_argparse() -> argparse.Namespace:
@@ -25,7 +26,7 @@ def set_argparse() -> argparse.Namespace:
     return args
 
 
-def proc_sent(nlp: spacy.Language, c_lines: List[str]):
+def print_entities(nlp: spacy.Language, c_lines: List[str]):
     """Print entities recognized in the documents."""
     ent_list = []
 
@@ -47,6 +48,36 @@ def proc_sent(nlp: spacy.Language, c_lines: List[str]):
     print(df)
 
 
+def print_token_parse_tree(node: Token, indent: int = 0):
+    ADD_INDENT = 4
+
+    print(f"{indent * ' '}[{node.i}] {node.text}\t\t"
+          f" dep_: {node.dep_}, "
+          f" pos_: {node.pos_}, "
+          f" tag_: {node.tag_}, "
+          f" iob_: {node.ent_iob_}"
+          )
+
+    for c in node.children:
+        print_token_parse_tree(c, indent + ADD_INDENT)
+
+
+def print_sent_parse_tree(sent: Span):
+    root = sent.root
+    print_token_parse_tree(root)
+
+
+def print_parse_trees(nlp: spacy.Language, c_lines: List[str]):
+    """Print parse trees for each of the line documents."""
+    line = 0
+    for line_text in c_lines:
+        doc = nlp(line_text)
+        for sent in doc.sents:
+            print(f"\nSentence [{line}]: {sent.text}")
+            print_sent_parse_tree(sent)
+        line += 1
+
+
 def main():
     args = set_argparse()
 
@@ -63,7 +94,9 @@ def main():
     # using the dependency parse
     nlp = spacy.load("es_core_news_lg")
 
-    proc_sent(nlp, c_lines[:5])
+    print_entities(nlp, c_lines[:5])
+
+    print_parse_trees(nlp, c_lines[:5])
 
 
 if __name__ == "__main__":
