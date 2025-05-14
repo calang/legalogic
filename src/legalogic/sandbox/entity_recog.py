@@ -29,16 +29,19 @@ def proc_sent(nlp: spacy.Language, c_lines: List[str]):
     """Print entities recognized in the documents."""
     ent_list = []
 
+    line = 0
     for line_text in c_lines:
         doc = nlp(line_text)
         for ent in doc.ents:
             ent_list.append({
                 "text": ent.text,
+                "line": line,
                 "start": ent.start_char,
                 "end": ent.end_char,
                 "label": ent.label_,
                 "kb_id": ent.kb_id,
             })
+        line += 1
 
     df = pd.DataFrame(ent_list)
     print(df)
