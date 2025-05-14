@@ -36,10 +36,10 @@ stages:
       size: 127532
     - path: src/legalogic/prep_docs/constitucion_sentences.py
       hash: md5
-      md5: d83516a1890d13439debf7270c390f0d
-      size: 1757
+      md5: 09bc6eae8e0f3de0413777cf4be5296d
+      size: 1746
     outs:
     - path: data/preprocessed/constitucion_sent_cr.txt
       hash: md5
-      md5: 067736588f25426a541b26f14f4b65f8
-      size: 122297
+      md5: 7fd2f8173f83b5b27de2fdb29a503232
+      size: 122622

@@ -8,7 +8,6 @@ import argparse
 import copy
 import re
 import sys
-import time
 from typing import List
 
 import spacy
@@ -63,7 +62,7 @@ def main():
         ]
 
     # using the dependency parse
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("es_core_news_lg")
 
     proc_sent(nlp, c_lines)
 
