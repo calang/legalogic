@@ -37,8 +37,12 @@ def remove_art_num_prefix(in_txt: str) -> str:
     return c_text
 
 
-def proc_sent(nlp: spacy.Language, c_lines: List[str]):
+def proc_sent(c_lines: List[str]):
     """Print lines without initial or ending space in any of its sentences."""
+
+    # use the dependency parse to identify sentences
+    nlp = spacy.load("es_core_news_lg")
+
     for line_text in c_lines:
         doc = nlp(line_text)
         sent_list = [sent.text.strip() for sent in doc.sents]
@@ -61,10 +65,7 @@ def main():
             for line in c_file
         ]
 
-    # using the dependency parse
-    nlp = spacy.load("es_core_news_lg")
-
-    proc_sent(nlp, c_lines)
+    proc_sent(c_lines)
 
 
 if __name__ == "__main__":
