@@ -46,7 +46,7 @@ def proc_sent(c_lines: List[str]):
     for line_text in c_lines:
         doc = nlp(line_text)
         sent_list = [sent.text.strip() for sent in doc.sents]
-        print(''.join(sent_list))
+        print(' '.join(sent_list))
 
 
 def main():

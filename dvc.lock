@@ -19,27 +19,27 @@ stages:
       size: 396798
     - path: src/legalogic/prep_docs/prep_const.py
       hash: md5
-      md5: c760a2d488e7f3d54acf4c73c916ef55
-      size: 2799
+      md5: bac287ea52aab72dfa6c1a69237b1d57
+      size: 3121
     outs:
     - path: data/preprocessed/constitucion_cr.txt
       hash: md5
-      md5: badfce3f02eee04c43934d623f81f8d8
-      size: 127532
+      md5: 84486739f6bbc7d9cd35ce99954f46f3
+      size: 127682
   constitucion_sent_cr:
     cmd: "python src/legalogic/prep_docs/constitucion_sentences.py data/preprocessed/constitucion_cr.txt
       >data/preprocessed/constitucion_sent_cr.txt\n"
     deps:
     - path: data/preprocessed/constitucion_cr.txt
       hash: md5
-      md5: badfce3f02eee04c43934d623f81f8d8
-      size: 127532
+      md5: 84486739f6bbc7d9cd35ce99954f46f3
+      size: 127682
     - path: src/legalogic/prep_docs/constitucion_sentences.py
       hash: md5
-      md5: 09bc6eae8e0f3de0413777cf4be5296d
-      size: 1746
+      md5: 12f74506e53b6170a11ca036d0440940
+      size: 1742
     outs:
     - path: data/preprocessed/constitucion_sent_cr.txt
       hash: md5
-      md5: 7fd2f8173f83b5b27de2fdb29a503232
-      size: 122622
+      md5: f9234f9e4a657d95f2e06412e14e7dfc
+      size: 123030

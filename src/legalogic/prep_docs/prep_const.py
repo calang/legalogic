@@ -32,7 +32,6 @@ def clean_text(in_txt: str) -> str:
     # pattern for any other html tag
     tag_pattern = re.compile(pattern=r'<[^>]*>', flags=MULTI_FLAG)
 
-
     # patterns for instances of &nbsp;
     nbsp_html_pattern = re.compile(pattern=r'&nbsp;', flags=MULTI_FLAG)
     nbsp_pattern = re.compile(pattern='\u00A0', flags=MULTI_FLAG)
@@ -40,11 +39,17 @@ def clean_text(in_txt: str) -> str:
     # patter for Ficha articulo
     ficha_pattern = re.compile(pattern=r'\s*Ficha articulo\s*')
 
+    # pattern for a bad sentence-end point.
+    # a literal dot (.), only if followed by anything other than space, a digit or another dot
+    # only the initial dot is to be recognized as the match
+    bad_endpoint_pattern = re.compile(pattern=r'\.(?=[^\s0-9.-])')
+
     c_text = re.sub(comment_pattern, '', c_text)
     c_text = re.sub(tag_pattern, '', c_text)
     c_text = re.sub(nbsp_html_pattern, ' ', c_text)
     c_text = re.sub(nbsp_pattern, ' ', c_text)
     c_text = re.sub(ficha_pattern, '', c_text)
+    c_text = re.sub(bad_endpoint_pattern, '. ', c_text)
 
     # assert c_text is not in_txt, "c_text and in_text are the same"
     return c_text
