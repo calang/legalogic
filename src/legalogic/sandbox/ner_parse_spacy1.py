@@ -12,6 +12,7 @@ from typing import List
 
 import pandas as pd
 import spacy
+from spacy import displacy
 from spacy.tokens import Span, Token
 
 
@@ -78,6 +79,16 @@ def print_parse_trees(nlp: spacy.Language, c_lines: List[str]):
         line += 1
 
 
+def render_parse_trees(nlp: spacy.Language, c_lines: List[str], out_file: str):
+    """Create displaCy html file with each of the line documents parse trees."""
+    docs = [nlp(line) for line in c_lines]
+
+    html = displacy.render(docs)
+
+    with open(out_file, "w", encoding='utf-8') as outf:
+        outf.write(html)
+
+
 def main():
     args = set_argparse()
 
@@ -97,6 +108,8 @@ def main():
     print_entities(nlp, c_lines[:5])
 
     print_parse_trees(nlp, c_lines[:5])
+
+    render_parse_trees(nlp, c_lines[:5], 'src/legalogic/sandbox/ner_parse_spacy1_const_trees.html')
 
 
 if __name__ == "__main__":
