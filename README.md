@@ -1,6 +1,8 @@
 # Legalogic
 
-A system to query Costa Rica legal content, based on logic.
+A system to query Costa Rica legal content, based on 
+logic, with high precision, reliability, and 
+explainability.
 
 ## ToC
 <!-- TOC -->
@@ -16,6 +18,8 @@ A system to query Costa Rica legal content, based on logic.
     * [Initialize other utilities](#initialize-other-utilities)
   * [How to use](#how-to-use)
   * [Dependencies](#dependencies)
+    * [Packages](#packages)
+    * [Tools](#tools)
   * [Authors](#authors)
   * [Possible additions](#possible-additions)
 <!-- TOC -->
@@ -50,7 +54,7 @@ Main objectives are
 
 ## Overall architecture
 As described in [LLM 
-recommendations](docs/Arch_Recom_from_LLMs.md)
+recommendations](docs/Recom_from_LLMs.md)
 
 ```text
 Legal Texts (Costa Rica) 

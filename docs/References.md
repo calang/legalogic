@@ -4,7 +4,7 @@ These are references compiled during the planning of the
 project.
 
 ## Recommendations from LLM Systems
-Compiled [here](Arch_Recom_from_LLMs.md).
+Compiled [here](Recom_from_LLMs.md).
 
 
 ## Libraries

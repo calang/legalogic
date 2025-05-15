@@ -3,48 +3,58 @@ To help inform what a sound approach is for developing
 the project, different AI LLM Systems were consulted for 
 their suggestions.
 
-## ToC
+**Table of Contents**
 <!-- TOC -->
 * [Recommendations from LLM Systems](#recommendations-from-llm-systems)
-  * [Prompt](#prompt)
-  * [Meta AI's answer](#meta-ais-answer)
-    * [Initial answer](#initial-answer)
-    * [Is the above a practical approach for avoiding hallucinations from an NLP system processing legal content?  Are there any more practical and effective approaches?](#is-the-above-a-practical-approach-for-avoiding-hallucinations-from-an-nlp-system-processing-legal-content-are-there-any-more-practical-and-effective-approaches)
-  * [Perplexity AI's](#perplexity-ais)
-    * [First answer](#first-answer)
-    * [How can I integrate Legal-ES with a logic programming framework](#how-can-i-integrate-legal-es-with-a-logic-programming-framework)
-    * [What are the best logic programming frameworks for integrating with Legal-ES](#what-are-the-best-logic-programming-frameworks-for-integrating-with-legal-es)
-  * [ChatGPT's answer](#chatgpts-answer)
-    * [Initial answer](#initial-answer-1)
-    * [Si desarrollo un sistema usando resultados de chatGPT, ¿incurro en obligaciones de licenciamiento de algún tipo hacia OpenAI o puedo usar mi sistema en forma completamente cerrada?](#si-desarrollo-un-sistema-usando-resultados-de-chatgpt-incurro-en-obligaciones-de-licenciamiento-de-algún-tipo-hacia-openai-o-puedo-usar-mi-sistema-en-forma-completamente-cerrada)
-    * [🛡️ Checklist legal y de uso de contenidos generados por ChatGPT](#-checklist-legal-y-de-uso-de-contenidos-generados-por-chatgpt)
-    * [Please sketch a more detailed plan](#please-sketch-a-more-detailed-plan)
-* [Resources](#resources)
-  * [Resource Lists](#resource-lists)
-    * [Legal Text Analytics](#legal-text-analytics)
-    * [Legal Natural Language Processing](#legal-natural-language-processing)
-  * [Articles](#articles)
-    * [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](#semeval-2023-task-6--legaleval---understanding-legal-texts)
-    * [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](#coupling-large-language-models-with-logic-programming-for-robust-and-general-reasoning-from-text)
-    * [Weakly supervised semantic parsing with abstract examples](#weakly-supervised-semantic-parsing-with-abstract-examples)
-    * [Natural language processing in the era of large language models](#natural-language-processing-in-the-era-of-large-language-models)
-    * [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](#a-study-on-the-implementation-of-generative-ai-services-using-an-enterprise-data-based-llm-application-architecture)
-    * [Answer set programming](#answer-set-programming)
-    * [Answer set programming - Wikipedia](#answer-set-programming---wikipedia)
-    * [Constraint Answer Set Programming without Grounding](#constraint-answer-set-programming-without-grounding)
-    * [Stable model semantics - Wikipedia](#stable-model-semantics---wikipedia)
-    * [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](#retrieval-augmented-semantic-parsing--using-large-language-models-to-improve-generalization)
-    * [More References](#more-references)
+  * [How to build the intended system](#how-to-build-the-intended-system-)
+    * [Prompt](#prompt)
+    * [Meta AI's answer](#meta-ais-answer)
+      * [Initial answer](#initial-answer)
+      * [Is the above a practical approach for avoiding hallucinations from an NLP system processing legal content?  Are there any more practical and effective approaches?](#is-the-above-a-practical-approach-for-avoiding-hallucinations-from-an-nlp-system-processing-legal-content-are-there-any-more-practical-and-effective-approaches)
+    * [Perplexity AI's](#perplexity-ais)
+      * [First answer](#first-answer)
+      * [How can I integrate Legal-ES with a logic programming framework](#how-can-i-integrate-legal-es-with-a-logic-programming-framework)
+      * [What are the best logic programming frameworks for integrating with Legal-ES](#what-are-the-best-logic-programming-frameworks-for-integrating-with-legal-es)
+    * [ChatGPT's answer](#chatgpts-answer)
+      * [Initial answer](#initial-answer-1)
+      * [Si desarrollo un sistema usando resultados de chatGPT, ¿incurro en obligaciones de licenciamiento de algún tipo hacia OpenAI o puedo usar mi sistema en forma completamente cerrada?](#si-desarrollo-un-sistema-usando-resultados-de-chatgpt-incurro-en-obligaciones-de-licenciamiento-de-algún-tipo-hacia-openai-o-puedo-usar-mi-sistema-en-forma-completamente-cerrada)
+      * [🛡️ Checklist legal y de uso de contenidos generados por ChatGPT](#-checklist-legal-y-de-uso-de-contenidos-generados-por-chatgpt)
+      * [Please sketch a more detailed plan](#please-sketch-a-more-detailed-plan)
+  * [When to expect a verb as the root of a parse tree?](#when-to-expect-a-verb-as-the-root-of-a-parse-tree)
+    * [Prompt](#prompt-1)
+    * [Answer (Perplexity)](#answer--perplexity-)
+  * [Which Python libraries are best to use?](#which-python-libraries-are-best-to-use)
+    * [Prompt](#prompt-2)
+    * [ChatGPT's Answer](#chatgpts-answer-1)
+    * [Google Chrome search (selected) results](#google-chrome-search-selected-results)
+  * [Resources](#resources)
+    * [Resource Lists](#resource-lists)
+      * [Legal Text Analytics](#legal-text-analytics)
+      * [Legal Natural Language Processing](#legal-natural-language-processing)
+    * [Articles](#articles)
+      * [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](#semeval-2023-task-6--legaleval---understanding-legal-texts)
+      * [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](#coupling-large-language-models-with-logic-programming-for-robust-and-general-reasoning-from-text)
+      * [Weakly supervised semantic parsing with abstract examples](#weakly-supervised-semantic-parsing-with-abstract-examples)
+      * [Natural language processing in the era of large language models](#natural-language-processing-in-the-era-of-large-language-models)
+      * [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](#a-study-on-the-implementation-of-generative-ai-services-using-an-enterprise-data-based-llm-application-architecture)
+      * [Answer set programming](#answer-set-programming)
+      * [Answer set programming - Wikipedia](#answer-set-programming---wikipedia)
+      * [Constraint Answer Set Programming without Grounding](#constraint-answer-set-programming-without-grounding)
+      * [Stable model semantics - Wikipedia](#stable-model-semantics---wikipedia)
+      * [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](#retrieval-augmented-semantic-parsing--using-large-language-models-to-improve-generalization)
+      * [Modular equivalence for normal logic programs.](#modular-equivalence-for-normal-logic-programs)
+      * [Module theorem for the general theory of stable models](#module-theorem-for-the-general-theory-of-stable-models)
 <!-- TOC -->
 
-## Prompt
+## How to build the intended system 
+### Prompt
 I want to develop a system that reads legal text in Spanish, for Costa Rica law and derives  a series of facts and rules that can layer be used by a symbolic reasoning system using Logic Programming, to answer questions related to the text. Some example question may a form such as "are there any contradictions in this body of laws?", or "is it legal or allowed to do such and such".
 
 Act as an AI expert in Natural Language Processing and Understanding and either a) recommend a fully open source system that has the described capability, or b) describe the main components and steps to build such a system, using open source frameworks only. 
 
-## Meta AI's answer
+### Meta AI's answer
 
-### Initial answer
+#### Initial answer
 [2025-04-26, 05:53], via WhatsApp.
 
 Developing a system to extract facts and rules from legal text in Spanish and apply symbolic reasoning is a challenging task. I'll outline the main components and steps to build such a system using open-source frameworks.
@@ -138,7 +148,7 @@ This example is a starting point, and you'll need to develop a more comprehensiv
 
 Keep in mind that building such a system will require significant development and testing efforts. You may need to adapt and extend existing open-source components to fit your specific use case.
 
-### Is the above a practical approach for avoiding hallucinations from an NLP system processing legal content?  Are there any more practical and effective approaches?
+#### Is the above a practical approach for avoiding hallucinations from an NLP system processing legal content?  Are there any more practical and effective approaches?
 [2025-04-26, 06:13], via WhatsApp.
 
 The approach I outlined can help mitigate hallucinations in NLP systems processing legal content, but it may not be the most practical or effective approach for several reasons:
@@ -165,9 +175,9 @@ Some specific techniques that might be useful for avoiding hallucinations in leg
 
 Ultimately, the most effective approach will depend on the specific requirements and constraints of your project. It's essential to carefully evaluate different approaches and techniques to determine the best fit for your use case.
 
-## Perplexity AI's
+### Perplexity AI's
 
-### First answer
+#### First answer
 [2025-04-26 13:34](https://www.perplexity.ai/search/i-want-to-develop-a-system-tha-f_U8hvLJST2_wEgdwfMxqQ)
 
 To develop a system that reads Spanish legal texts (specifically Costa Rican law), extracts facts and rules, and enables symbolic reasoning with logic programming to answer questions such as contradictions or legality, you have two main paths: using existing open source resources or building a system from components. Below is a detailed expert recommendation based on open source frameworks and research.
@@ -274,7 +284,7 @@ NLP tools like SpaCy and transformer models can be adapted for Spanish legal tex
 
 This architecture will allow you to extract structured facts and rules from Costa Rican legal texts and perform symbolic reasoning to answer complex legal queries such as contradictions or legality assessments.
 
-### How can I integrate Legal-ES with a logic programming framework
+#### How can I integrate Legal-ES with a logic programming framework
 To integrate Legal-ES-a large Spanish legal text corpus and embedding resource-with a logic programming framework for symbolic legal reasoning, you need to bridge natural language legal knowledge extraction and formal logic representation. The integration involves several key steps and components, combining NLP and logic programming tools:
 
 1. Use Legal-ES for Legal Text Processing and Fact/Rule Extraction
@@ -332,7 +342,7 @@ References:
 * [PROLEG and deep learning integration for legal reasoning](https://arxiv.org/pdf/2306.16632.pdf)
 * [ASP-based legal decision explanation systems](https://ceur-ws.org/Vol-3733/short3.pdf)
 
-### What are the best logic programming frameworks for integrating with Legal-ES
+#### What are the best logic programming frameworks for integrating with Legal-ES
 
 The best logic programming frameworks for integrating with Legal-ES, a Spanish legal text resource, are those that support formalizing legal rules and facts extracted from text, enable symbolic reasoning, and ideally facilitate neuro-symbolic integration with language models. Based on recent research and practical use cases, the following frameworks stand out:
 
@@ -386,10 +396,10 @@ References:
 * [Alda: Integrating Logic Rules with Everything Else, Seamlessly](https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/integrating-logic-rules-with-everything-else-seamlessly/43F7B71F2B4A27FAB6BFF7EFC0C58EF6)
 * [XAI-LAW: Logic Programming Tool for Explaining Legal Decisions](https://ceur-ws.org/Vol-3733/short3.pdf)
 
-## ChatGPT's answer
+### ChatGPT's answer
 [2025-04-27 5:00](https://chatgpt.com/c/680e0d7e-1ee8-8000-85da-c03101a70379)
 
-### Initial answer
+#### Initial answer
 Got it — you're looking for an open source solution for automatically extracting facts and rules from legal Spanish texts (Costa Rican law) to feed a symbolic reasoning system (like Prolog, ASP, Datalog, etc.) to answer deep legal questions (e.g., contradictions, permissions).
 
 I'll give you a careful expert answer, organized exactly how you asked:
@@ -554,10 +564,10 @@ In short:
 If you want, I can also sketch a more detailed plan (including specific libraries to install, what to code first, and an example prototype setup).
 Would you like me to do that next? 🚀
 
-### Si desarrollo un sistema usando resultados de chatGPT, ¿incurro en obligaciones de licenciamiento de algún tipo hacia OpenAI o puedo usar mi sistema en forma completamente cerrada?
+#### Si desarrollo un sistema usando resultados de chatGPT, ¿incurro en obligaciones de licenciamiento de algún tipo hacia OpenAI o puedo usar mi sistema en forma completamente cerrada?
 [2025-04-27 05:14](https://chatgpt.com/c/680e1117-8c60-8000-a68f-92177c5bec3d)
 
-### 🛡️ Checklist legal y de uso de contenidos generados por ChatGPT
+#### 🛡️ Checklist legal y de uso de contenidos generados por ChatGPT
 1. ✅ Revisión de Términos de Uso de OpenAI
 
 Asegúrate de que el uso que haces del contenido cumple los Términos de Uso actuales.
@@ -589,7 +599,7 @@ Puedes decir que usaste OpenAI o ChatGPT como herramienta de asistencia si quier
 
 Por si en algún momento necesitas demostrar que el contenido fue generado por IA.
 
-### Please sketch a more detailed plan
+#### Please sketch a more detailed plan
 Perfect! Let’s dive deep and lay out a detailed practical plan, step-by-step, for Ubuntu 24.10.
 I'll include specific libraries, what to code first, dev environment setup, and example prototype milestones.
 
@@ -819,28 +829,152 @@ Map to logic | Python | Prolog facts/rules
 Reasoning | SWI-Prolog | Answers, contradictions
 Optional API | FastAPI | REST endpoint
 
-# Resources
+## When to expect a verb as the root of a parse tree?
+### Prompt
+in a natural language parse tree, is it to be expected 
+that the root of the tree always be a verb?  When is this to be expected and when not?
+### [Answer (Perplexity)](https://www.perplexity.ai/search/in-a-natural-language-parse-tr-gSlqZxCmTDig_8v4U.N.EQ)
+A parse tree's root node represents the highest-level syntactic structure of a sentence, but whether it is a verb depends on the grammatical framework used. Here's a breakdown:
 
-## Resource Lists
+**Constituency-Based Parse Trees (Phrase Structure)**
 
-### [Legal Text Analytics](https://github.com/Liquid-Legal-Institute/Legal-Text-Analytics)
+Root is the sentence (S), not the verb.
+In phrase structure grammars, the root node typically represents the entire sentence (labeled "S"), which branches into noun phrases (NP) and verb phrases (VP). For example:
 
-### [Legal Natural Language Processing](https://github.com/maastrichtlawtech/awesome-legal-nlp)
+```text
+    S
+   / \
+  NP VP
+ /   / \
+N   V  NP
+|   |   |
+John hit the ball
+```
+Here, the verb "hit" is part of the VP subtree, not the root.
 
-## Articles
+**Dependency-Based Parse Trees**
 
-### [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](papers/2023.semeval-1.318.pdf)
+Root is often the main verb.
+Dependency grammars center on hierarchical relationships between words, with the root being the head of the sentence (usually the main verb). For example, in "John eats the cake," the verb "eats" would be the root, governing "John" (subject) and "cake" (object).
+
+**When to Expect a Verb as the Root**
+
+Dependency grammar analyses prioritize verbs as roots due to their role in governing syntactic dependencies.
+
+Abstract syntax trees in computational linguistics may simplify structures, sometimes centering on verbs.
+
+**When Not to Expect a Verb as the Root**
+
+Constituency grammars (e.g., context-free grammars) always use a sentence-level root (S).
+
+Formal semantic analyses (as in search result 4) build meaning compositionally from sentence-level roots, not verbs.
+
+**Key Takeaway**
+
+The root’s identity depends on the framework:
+
+Framework | Root Node
+--- | ---
+Constituency grammar | Sentence (S)	
+Dependency grammar | Main verb
+
+Thus, verbs are roots only in dependency-based trees, not in constituency-based ones
+
+## Which Python libraries are best to use?
+### Prompt
+Which python libraries can be used to produce 
+Constituency-Based Parse Trees for Spanish sentences?
+### [ChatGPT's Answer](https://chatgpt.com/c/682635ea-6ce8-8000-8af1-51a061c4cec1)
+
+To produce Constituency-Based Parse Trees for Spanish sentences, several Python libraries and tools support this functionality, although constituency parsing for Spanish is not as widely supported as for English. Here are some libraries and tools you can use:
+
+**🧠 1. Stanza (Stanford NLP)**.
+Stanza is a Python NLP library from Stanford that includes support for constituency parsing in multiple languages, including Spanish.
+
+Installation:
+```bash
+pip install stanza
+```
+
+Setup:
+```python
+import stanza
+stanza.download('es')  # Download Spanish models
+nlp = stanza.Pipeline(lang='es', processors='tokenize,pos,constituency')
+doc = nlp("El perro duerme en la casa.")
+print(doc.sentences[0].constituency)
+```
+✅ Supports constituency parsing for Spanish.
+
+**🌍 2. spaCy + Benepar**.
+While spaCy itself doesn't offer constituency parsing, you can integrate it with Benepar (Berkeley Neural Parser), which supports Spanish when properly configured.
+
+Installation:
+```bash
+pip install spacy benepar
+python -m spacy download es_core_news_md
+python -m benepar.download 'benepar_es2'
+```
+
+Usage:
+```python
+import spacy
+import benepar
+
+nlp = spacy.load("es_core_news_md")
+if not nlp.has_pipe("benepar"):
+    benepar_component = benepar.BeneparComponent("benepar_es2")
+    nlp.add_pipe("benepar", config={"model": "benepar_es2"})
+doc = nlp("El perro duerme en la casa.")
+print(list(doc.sents)[0]._.parse_string)
+```
+✅ Supports Spanish; benepar_es2 is a trained Spanish model.
+
+**🧩 3. AllenNLP + Constituency Parser**
+AllenNLP provides a powerful constituency parser, but only supports English by default. It can be adapted for Spanish, but you’d need to retrain the parser with Spanish treebank data (e.g., from AnCora or Universal Dependencies).
+
+⚠️ Advanced — Requires training your own model for Spanish.
+
+**📚 4. NLTK (with external models)**
+NLTK doesn't have built-in Spanish parsers, but it can display parse trees if you obtain Spanish treebank data and use external parsers (e.g., Berkeley Parser, Stanford Parser).
+
+⚠️ Not out-of-the-box — Requires manual setup and external parsers.
+
+**📦 Summary Table**
+
+| Library             | Supports Spanish? | Constituency Parsing | Notes                  |
+| ------------------- | ----------------- | -------------------- | ---------------------- |
+| **Stanza**          | ✅ Yes             | ✅ Yes                | Easiest full solution  |
+| **spaCy + Benepar** | ✅ Yes             | ✅ Yes                | High-quality parser    |
+| **AllenNLP**        | ❌ Not by default  | ✅ Yes (English only) | Custom training needed |
+| **NLTK + external** | ⚠️ Limited        | ✅ Possible           | Manual work            |
+
+### Google Chrome search (selected) results
+- [Constituency Parser - Stanza](https://stanfordnlp.github.io/stanza/constituency.html)
+- [constituent-treelib](https://pypi.org/project/constituent-treelib/)
+
+## Resources
+
+### Resource Lists
+
+#### [Legal Text Analytics](https://github.com/Liquid-Legal-Institute/Legal-Text-Analytics)
+
+#### [Legal Natural Language Processing](https://github.com/maastrichtlawtech/awesome-legal-nlp)
+
+### Articles
+
+#### [SemEval-2023 Task 6: LegalEval - Understanding Legal Texts](papers/2023.semeval-1.318.pdf)
 
 From https://aclanthology.org/2023.semeval-1.318.pdf
 
-### [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](papers/Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text 2307.07696v1.pdf)
+#### [Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text](papers/Coupling Large Language Models with Logic Programming for Robust and General Reasoning from Text 2307.07696v1.pdf)
 
 From: Joohyung Lee
 [v1] Sat, 15 Jul 2023 
 03:29:59 UTC (2,765 KB)
 https://arxiv.org/abs/2307.07696
 
-### [Weakly supervised semantic parsing with abstract examples](papers/Weakly supervised semantic parsing with abstract examples P18-1168.pdf)
+#### [Weakly supervised semantic parsing with abstract examples](papers/Weakly supervised semantic parsing with abstract examples P18-1168.pdf)
 Omer Goldman, Veronica Latcinnik, Ehud Nave, Amir
 Globerson, and Jonathan Berant. 2018. **Weakly supervised semantic parsing with abstract examples**. In
 Proceedings of the 56th Annual Meeting of the As-
@@ -848,39 +982,39 @@ sociation for Computational Linguistics (Volume 1:
 Long Papers), pages 1809–1819.
 https://aclanthology.org/P18-1168/
 
-### [Natural language processing in the era of large language models](papers/Natural language processing in the era of large language models frai-06-1350306.pdf)
+#### [Natural language processing in the era of large language models](papers/Natural language processing in the era of large language models frai-06-1350306.pdf)
 SPECIALTY GRAND CHALLENGE article
 Front. Artif. Intell. , 11 January 2024
 Sec. Natural Language Processing
 Volume 6 - 2023 | https://doi.org/10.3389/frai.2023.1350306
 
-### [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](papers/A_Study_on_the_Implementation_of_Generative_AI_Ser.pdf)
+#### [A Study on the Implementation of Generative AI Services Using an Enterprise Data-Based LLM Application Architecture](papers/A_Study_on_the_Implementation_of_Generative_AI_Ser.pdf)
 September 2023
 DOI:10.48550/arXiv.2309.01105
 LicenseCC BY-NC-ND 4.0
 
 https://www.researchgate.net/publication/373685686_A_Study_on_the_Implementation_of_Generative_AI_Services_Using_an_Enterprise_Data-Based_LLM_Application_Architecture
 
-### [Answer set programming](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
+#### [Answer set programming](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
 Vladimir Lifschitz. 2019. Answer set programming. Springer Heidelberg
 https://link.springer.com/book/10.1007/978-3-030-24658-7#toc
 
-### [Answer set programming - Wikipedia](https://en.wikipedia.org/wiki/Answer_set_programming)
+#### [Answer set programming - Wikipedia](https://en.wikipedia.org/wiki/Answer_set_programming)
 
-### [Constraint Answer Set Programming without Grounding](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
+#### [Constraint Answer Set Programming without Grounding](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
 https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/constraint-answer-set-programming-without-grounding/55A678C618EF54487777F021D89B3FE7
 
-### [Stable model semantics - Wikipedia](https://en.wikipedia.org/wiki/Stable_model_semantics)
+#### [Stable model semantics - Wikipedia](https://en.wikipedia.org/wiki/Stable_model_semantics)
 
-### [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](papers/Retrieval-Augmented Semantic Parsing Using Large Language Models to Improve Generalization 2412.10207v1.pdf)
+#### [Retrieval-Augmented Semantic Parsing: Using Large Language Models to Improve Generalization](papers/Retrieval-Augmented Semantic Parsing Using Large Language Models to Improve Generalization 2412.10207v1.pdf)
 https://arxiv.org/html/2412.10207v1
 
-### More References
+#### Modular equivalence for normal logic programs.
 Emilia Oikarinen and Tomi Janhunen. 2006.
-_Modular equivalence for normal logic programs_. In 17th European Conference on Artificial Intelligence(ECAI),
-pages 412–416.
+In 17th European Conference on Artificial Intelligence
+(ECAI), pages 412–416.
 
-Joseph Babb and Joohyung Lee. 2012. _Module theorem for 
-the general theory of stable models_. Theory and
-Practice of Logic Programming, 12(4-5):719–735.
+#### Module theorem for the general theory of stable models
+Joseph Babb and Joohyung Lee. 2012.
+Theory and Practice of Logic Programming, 12(4-5):719–735.
 
