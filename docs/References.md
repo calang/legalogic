@@ -26,7 +26,7 @@ A very simple framework for state-of-the-art NLP. Developed by Humboldt Universi
   * [NLP Pipeline with SpaCy & TextBlob](https://github.com/AqueeqAzam/Complete-NLP-pipeline-using-SpaCy)
     * This project implements a Natural Language Processing (NLP) pipeline using SpaCy and TextBlob. It covers text processing, named entity recognition (NER), sentiment analysis, rule-based matching, and more, making it useful for chatbots, search engines, sentiment analysis, and text summarization.
 
-### Stanza
+### [Stanza](https://stanfordnlp.github.io/stanza)
 Another powerful NLP library with support for 
   Spanish, providing high-performance, streamlined processing of text data.
 
@@ -97,7 +97,9 @@ Information Extraction](https://aclanthology.org/2023.nllp-1.12.pdf)
 
 
 ## Articles
-
+* [NLP with Stanza: Guide to an NLP package for many languages](https://pythonology.eu/guide-to-nlp-with-stanza-stanfordnlp/)
+  * Examples of using Stanza for different types of 
+    analyses.
 * [Towards Robust Legal Reasoning: Harnessing Logical LLMs in Law](https://arxiv.org/html/2502.17638v1)
 * [XAI-LAW Towards a logic programming tool for taking
 and explaining legal decisions](https://ceur-ws.org/Vol-3733/short3.pdf)

@@ -74,3 +74,15 @@ A future challenge might be identifying related entities
 occurring in different sentences, though.
 
 **Note**: Stanza has a [model for entity coreference](https://stanfordnlp.github.io/stanza/coref.html) for Spanish.
+
+## 2025-04-15
+Found two possible options to produce grammatical parsing:
+- **spacy + benepar**
+  - main repo for benepar is [here](https://github.com/nikitakit/self-attentive-parser)
+  - per last version there is no model for 
+    Spanish, among those listed [here](https://github.
+    com/nikitakit/self-attentive-parser?tab=readme-ov-file#available-models).
+  - as shown in `src/legalogic/sandbox/benepar.py`, we 
+    didn't find a way to download this module.
+- **Stanza**: to be tried next
+

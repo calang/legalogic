@@ -63,6 +63,10 @@ spacy:
 	python -m spacy download es_core_news_lg
 	python -m spacy download es_dep_news_trf
 
+# target: benepar - download benepar (Berkeley Neural Parser) language models
+benepar:
+	python -m benepar.download 'benepar_es3'
+
 # target: dvc-init
 dvc-init:
 	[ -d .dvc ] || dvc init

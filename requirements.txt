@@ -1,5 +1,6 @@
 # Packages not installable through mamba
 
+# benepar
 flair
 
 # --extra-index-url https://download.pytorch.org/whl/cu117
