@@ -109,7 +109,7 @@ def main():
 
     print_parse_trees(nlp, c_lines[:5])
 
-    render_parse_trees(nlp, c_lines[:5], 'src/legalogic/sandbox/ner_parse_spacy1_const_trees.html')
+    render_parse_trees(nlp, c_lines[:5], 'src/legalogic/sandbox/01-const_trees.html')
 
 
 if __name__ == "__main__":
