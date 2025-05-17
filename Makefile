@@ -25,9 +25,14 @@ help:
 	@echo "  where <target> may be"
 	@echo
 	@egrep -h "^# target:" [Mm]akefile | sed -e 's/^# target: //'
-#	@echo
-#	@echo REPO_ROOT=${REPO_ROOT}
-#	@echo LOCAL_REMOTE_DIR=${LOCAL_REMOTE_DIR}
+
+# target: showenv - show environment variable definitions set for the Makefile
+showenv:
+	@echo REPO_ROOT=${REPO_ROOT}
+	@echo LOCAL_REMOTE_DIR=${LOCAL_REMOTE_DIR}
+	@echo ENV_NAME=${ENV_NAME}
+	@echo CUDA_DIR=${CUDA_DIR}
+	@echo XLA_FLAGS=${XLA_FLAGS}
 
 
 # # target: .venv - create local venv
@@ -41,14 +46,14 @@ requirements:	ALWAYS
 
 # target: update-env - update conda environment based on latest content of environment.yml file
 update-env:
-	conda env update -f env.yml
+	$(TF_SETENV); conda env update -f env.yml
 
 # target: rm-env - update conda environment based on latest content of environment.yml file
 rm-env:
 	conda env remove -n ${ENV_NAME}
 
 # target: spacy - download language models
-spacy:	update-env
+spacy:
 	python -m spacy download en_core_web_sm
 	python -m spacy download en_core_web_md
 	python -m spacy download en_core_web_lg
@@ -63,7 +68,8 @@ dvc-init:
 	[ -d .dvc ] || dvc init
 	mkdir -p data/rawdata
 	mkdir -p ${LOCAL_REMOTE_DIR}
-	dvc remote add -d localremote ${LOCAL_REMOTE_DIR}
+	grep -q ${LOCAL_REMOTE_DIR} .dvc/config || \
+		dvc remote add -d localremote ${LOCAL_REMOTE_DIR}
 
 # target: jupl - start (run) jupiter lab server
 jupl:	ALWAYS

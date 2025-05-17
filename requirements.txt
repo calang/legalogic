@@ -1,3 +1,9 @@
 # Packages not installable through mamba
 
 flair
+
+# --extra-index-url https://download.pytorch.org/whl/cu117
+# torch
+# torchvision
+# torchaudio
+
