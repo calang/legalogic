@@ -13,7 +13,7 @@ Notes about progress made (or not) as the proyect evolved.
 ## 2025-05-15 Summary, so far
 
 ### Motivation
-The motivation for the proyect, as described in the main 
+The motivation for the project, as described in the main 
 README.md file, is to
 > develop an efficient, 
 escalable process to produce logic-based mechanisms to 
@@ -85,4 +85,11 @@ Found two possible options to produce grammatical parsing:
   - as shown in `src/legalogic/sandbox/benepar.py`, we 
     didn't find a way to download this module.
 - **Stanza**: to be tried next
+
+## 2025-05-19
+- **installed** `stanza`
+- ensured **GPU** is available to `stanza`
+- created **03-01_stanza_const_parse.py** as a first test 
+  script on the constitución text.
+- **Obtained expected** grammatical parse trees.
 
