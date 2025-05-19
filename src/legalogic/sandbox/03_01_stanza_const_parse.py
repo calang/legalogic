@@ -4,7 +4,6 @@ Obtain Constituency Grammar Trees from constitución text.
 This script processes Spanish text and generates constituency grammar trees using Stanza.
 """
 
-from typing import Any
 import argparse
 import stanza
 
@@ -18,7 +17,7 @@ def set_argparse() -> argparse.Namespace:
     return args
 
 
-def print_tree(tree: Any, indent: int = 0) -> None:
+def print_tree(tree: 'ParseTree', indent: int = 0) -> None:
     """
     Print a constituency parse tree with proper indentation.
     
