@@ -5,8 +5,6 @@ Recognize entities mentioned in the constitución.
 """
 
 import argparse
-import copy
-import re
 import sys
 from typing import List
 
