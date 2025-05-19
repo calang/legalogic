@@ -58,12 +58,13 @@ def process_file(file_path: str, nlp: stanza.Pipeline) -> None:
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
-            text = f.read()
-        doc = nlp(text)
-        for sentence in doc.sentences[:5]:
-            print(sentence.text)
-            tree = sentence.constituency
-            print_tree(tree)
+            line_text_list = f.readlines()
+        for line_text in line_text_list[:5]:
+            doc = nlp(line_text)
+            for sentence in doc.sentences:
+                print(sentence.text)
+                tree = sentence.constituency
+                print_tree(tree)
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
     except Exception as e:
