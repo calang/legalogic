@@ -100,4 +100,6 @@ Explored the structure of **dependency trees**
   relations (deprel)
 - dependencies seem to actually be **a shortcut for 
   processing** the grammatical (constituency) parse tree, 
-  once the [different types of dependencies](https://universaldependencies.org/u/dep/index.html) are well understood 
+  once the [different types of dependencies](https://universaldependencies.org/u/dep/index.html) are well understood
+- [learned about TAME](https://www.perplexity.ai/search/what-is-a-tame-category-in-the-058gKguZRsy3X93SukDE6Q) word categories
+
