@@ -103,3 +103,14 @@ Explored the structure of **dependency trees**
   once the [different types of dependencies](https://universaldependencies.org/u/dep/index.html) are well understood
 - [learned about TAME](https://www.perplexity.ai/search/what-is-a-tame-category-in-the-058gKguZRsy3X93SukDE6Q) word categories
 
+## 2025-05-20
+Started playing with NER
+- created first script
+- noticed some entities with complex names, like 
+  "Tratado Echandi Montero - Fernández Jaén", being 
+  split in two entities: "Tratado Echandi Montero" and "Fernández Jaén"
+- this might be solved by referring to the constituency 
+  parse, where the whole "Tratado Echandi Montero" and 
+  "Fernández Jaén" is parsed as a single "grup.nom"
+
+
