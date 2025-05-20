@@ -113,4 +113,8 @@ Started playing with NER
   parse, where the whole "Tratado Echandi Montero" and 
   "Fernández Jaén" is parsed as a single "grup.nom"
 
+Added first coref script
+- some references, like "Tratado Echandi 
+  Montero - Fernández Jaén" are recognized as single 
+  references by coref (great!)
 

@@ -16,7 +16,8 @@ LOCAL_REMOTE_DIR := $(shell grep LOCAL_REMOTE_DIR .env | cut -d = -f 2)
 ENV_NAME := $(shell head -1 env.yml | cut -d ' ' -f 2)
 CUDA_DIR := /home/calang/installed/miniforge3/envs/${ENV_NAME}
 XLA_FLAGS := --xla_gpu_cuda_data_dir=${CUDA_DIR}
-TF_SETENV := export CUDA_DIR=${CUDA_DIR} XLA_FLAGS=${XLA_FLAGS}
+TF_ENABLE_ONEDNN_OPTS := 0
+TF_SETENV := export CUDA_DIR=${CUDA_DIR} XLA_FLAGS=${XLA_FLAGS} TF_ENABLE_ONEDNN_OPTS=${TF_ENABLE_ONEDNN_OPTS}
 
 
 # target: help - Display callable targets.

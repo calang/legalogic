@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 """
-Obtain a list of identified Named Entities from constitución text.
+Obtain a list of co-referenced Named Entities from constitución text.
 """
 
 import argparse
 
+import numpy as np
+import pandas as pd
 import stanza
 
 from src.util.pandas_config import configure_pandas_display
@@ -13,7 +15,7 @@ configure_pandas_display()
 
 
 def set_argparse() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description='Obtain a list of identified Named Entities from constitución text.')
+    parser = argparse.ArgumentParser(description='Obtain a list of co-referenced Named Entities from constitución text.')
     parser.add_argument('-v', '--verbose',
                         help='work verbosely',
                         action="store_true"
@@ -41,19 +43,15 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
         Stanza Pipeline object or None if initialization fails
     
     Raises:
-        stanza.pipeline.core.ResourcesFileNotFoundError: If required models are not downloaded
-        RuntimeError: If pipeline initialization fails
+        Exception: If pipeline initialization fails
     """
     try:
         return stanza.Pipeline('es',
                                use_gpu=use_gpu,
-                               processors='tokenize,mwt,ner',
-                               download_method=None,
+                               processors='tokenize,mwt,coref',
+                               download_method=None,  # to save queries to source
                                )
-    except stanza.pipeline.core.ResourcesFileNotFoundError as e:
-        print(f"Required Stanza models not found. Please download models first: {e}")
-        return None
-    except RuntimeError as e:
+    except Exception as e:
         print(f"Failed to initialize Stanza pipeline: {e}")
         return None
 
@@ -76,10 +74,9 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
             line_text_list = f.readlines()
 
         for line_text in line_text_list[:(maxlines if maxlines else 1000000)]:
-            doc = nlp(line_text)
-            print(f"\n{doc.text}")
-            for ent in doc.ents:
-                print(f'entity: {ent.text}\t: {ent.type}')
+            print(f"\n{line_text}")
+            json_output = nlp(line_text)
+            print(json_output)
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
     except Exception as e:
