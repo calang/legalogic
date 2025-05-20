@@ -75,8 +75,9 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
 
         for line_text in line_text_list[:(maxlines if maxlines else 1000000)]:
             print(f"\n{line_text}")
-            json_output = nlp(line_text)
-            print(json_output)
+            doc = nlp(line_text)
+            print(f"{doc:C}")
+            print(doc)
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
     except Exception as e:
