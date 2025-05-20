@@ -93,3 +93,11 @@ Found two possible options to produce grammatical parsing:
   script on the constitución text.
 - **Obtained expected** grammatical parse trees.
 
+## 2025-05-19
+Explored the structure of **dependency trees**
+- created 03-02_stanza_dep_parse.py
+- refered to [Perplexity](https://www.perplexity.ai/search/what-is-a-tame-category-in-the-058gKguZRsy3X93SukDE6Q) to understand dependency 
+  relations (deprel)
+- dependencies seem to actually be **a shortcut for 
+  processing** the grammatical (constituency) parse tree, 
+  once the [different types of dependencies](https://universaldependencies.org/u/dep/index.html) are well understood 
