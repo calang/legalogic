@@ -4,6 +4,7 @@ Obtain a list of co-referenced Named Entities from constitución text.
 """
 
 import argparse
+import pprint as pp
 
 import numpy as np
 import pandas as pd
@@ -77,7 +78,9 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
             print(f"\n{line_text}")
             doc = nlp(line_text)
             print(f"{doc:C}")
-            print(doc)
+            print(doc)  # list[list[token]], with expanded coref_chains
+            # print(*[t for t in doc.iter_tokens()], sep="\n")  # same
+            print()
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
     except Exception as e:
