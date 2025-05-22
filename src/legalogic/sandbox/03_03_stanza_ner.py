@@ -50,6 +50,7 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
         return stanza.Pipeline('es',
                                use_gpu=use_gpu,
                                processors='tokenize,mwt,ner',
+                               package={"ner": ["ancora", "conll02"]},
                                download_method=None,
                                )
     except stanza.pipeline.core.ResourcesFileNotFoundError as e:
