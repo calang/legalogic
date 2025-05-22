@@ -10,8 +10,10 @@ import numpy as np
 import pandas as pd
 import stanza
 
+from src.config.config import Config
 from src.util.pandas_config import configure_pandas_display
 
+config = Config().config
 configure_pandas_display()
 
 
@@ -25,6 +27,10 @@ def set_argparse() -> argparse.Namespace:
                         type=int,
                         help='max number of input lines to process',
                         )
+    parser.add_argument('-s', '--summarize',
+                        help='print a set of coref representative texts for each document',
+                        action="store_true",
+                        )
     parser.add_argument('input_file_path',
                         help='Path to the input file'
                         )
@@ -33,7 +39,7 @@ def set_argparse() -> argparse.Namespace:
     return args
 
 
-def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
+def init_nlp(use_gpu: bool = False) -> stanza.Pipeline:
     """
     Initialize the Stanza NLP pipeline.
     
@@ -53,11 +59,14 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
                                download_method=None,  # to save queries to source
                                )
     except Exception as e:
-        print(f"Failed to initialize Stanza pipeline: {e}")
-        return None
+        raise Exception(f"Failed to initialize Stanza pipeline: {e}") from e
 
 
-def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> None:
+def process_file(file_path: str,
+                 nlp: stanza.Pipeline,
+                 maxlines: int = None,
+                 summarize: bool = False,
+                 ) -> None:
     """
     Process a text file.
     
@@ -65,26 +74,24 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
         file_path: Path to the input file
         nlp: Initialized Stanza pipeline
         maxlines: Maximum number of lines to process from input file
-    
-    Raises:
-        FileNotFoundError: If input file does not exist
-        ValueError: If dependency parsing fails
+        summarize: flag to print a set of coref representative texts for each document
     """
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            line_text_list = f.readlines()
+    with open(file_path, 'r', encoding='utf-8') as f:
+        line_text_list = f.readlines()
 
-        for line_text in line_text_list[:(maxlines if maxlines else 1000000)]:
-            print(f"\n{line_text}")
-            doc = nlp(line_text)
-            print(f"{doc:C}")
-            print(doc)  # list[list[token]], with expanded coref_chains
-            # print(*[t for t in doc.iter_tokens()], sep="\n")  # same
-            print()
-    except FileNotFoundError:
-        print(f"Error: File {file_path} not found")
-    except Exception as e:
-        print(f"Error processing file: {e}")
+    for line_text in line_text_list[:maxlines if maxlines else config.get('maxlines_infinite')]:
+        print(f"\n{line_text}")
+        doc = nlp(line_text)
+        print(f"{doc:C}")
+        # print(doc)
+        if summarize:
+            print('Coref representative texts:')
+            coref_text_set = set()
+            for word in doc.iter_words():
+                for coref_att in word.coref_chains:
+                    coref_text_set.add(coref_att.chain.representative_text)
+            pp.pprint(coref_text_set)
+        print()
 
 
 def main():
@@ -93,7 +100,7 @@ def main():
     if nlp is None:
         return
     
-    process_file(args.input_file_path, nlp, args.maxlines)
+    process_file(args.input_file_path, nlp, args.maxlines, args.summarize)
 
 
 if __name__ == '__main__':
