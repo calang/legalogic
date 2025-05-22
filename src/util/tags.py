@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-Tag dictionaries.
+Universal Dependencies tag dictionaries.
+
+Ref: https://universaldependencies.org/u/pos/
 """
 
 upos_tags = {

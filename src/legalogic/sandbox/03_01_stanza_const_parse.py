@@ -5,6 +5,8 @@ This script processes Spanish text and generates constituency grammar trees usin
 """
 
 import argparse
+import pprint as pp
+
 import stanza
 from src.util.tags import upos_tags
 
@@ -23,11 +25,18 @@ def set_argparse() -> argparse.Namespace:
                         help='collapse group names as a single leaf node',
                         action="store_true",
                         )
+    parser.add_argument('-s', '--summarize',
+                        help='include a list of collapsed grupnoms at the end of the output; implies -g if not already set',
+                        action="store_true",
+                        )
     parser.add_argument('input_file_path',
                         help='Path to the input file'
                         )
     args = parser.parse_args()
     args.prog = parser.prog
+    
+    args.groupnom = args.groupnom or args.summarize
+    
     return args
 
 
@@ -54,7 +63,11 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
         raise Exception(f"Failed to initialize Stanza pipeline: {e}") from e
 
 
-def print_tree(tree: 'ParseTree', indent: int = 0, group_nom: bool = False) -> None:
+def print_tree(tree: 'ParseTree',
+               indent: int = 0,
+               group_nom: bool = False,
+               summarize: bool = False,
+               ) -> set[str]:
     """
     Print a constituency parse tree with proper indentation.
     
@@ -62,6 +75,9 @@ def print_tree(tree: 'ParseTree', indent: int = 0, group_nom: bool = False) -> N
         tree: The constituency parse tree object to print
         indent: Number of spaces for indentation (default: 0)
         group_nom: Whether to collapse group names as single leaf nodes (default: False)
+    
+    Returns:
+        set of collapsed group names if summarize is True, else the empty set
     """
     INDENT_SIZE = 4  # Number of spaces for each level of indentation
 
@@ -76,21 +92,24 @@ def print_tree(tree: 'ParseTree', indent: int = 0, group_nom: bool = False) -> N
     if group_nom and tree.label == 'grup.nom':
         group_text = get_tree_text(tree)
         print(f"{' ' * indent}{tree.label} {group_text}")
-        return
+        return {group_text} if summarize else set()
 
     if tree.label in upos_tags:
         print(f"{' ' * indent}{tree.label} {tree.children[0].label}")
-        return
+        return set()
 
     print(f"{' ' * indent}{tree.label}")
+    result = set()
     for child in tree.children:
-        print_tree(child, indent + INDENT_SIZE, group_nom=group_nom)
+        result.update(print_tree(child, indent + INDENT_SIZE, group_nom=group_nom, summarize=summarize))
+    return result
 
 
 def process_file(file_path: str,
                  nlp: stanza.Pipeline,
                  maxlines: int = None,
                  group_nom: bool = False,
+                 summarize: bool = False,
                  ) -> None:
     """
     Process a text file and print its constituency trees.
@@ -113,7 +132,9 @@ def process_file(file_path: str,
             for sentence in doc.sentences:
                 print(sentence.text)
                 tree = sentence.constituency
-                print_tree(tree, group_nom=group_nom)
+                group_name_set = print_tree(tree, group_nom=group_nom, summarize=summarize)
+                if summarize:
+                    pp.pprint(group_name_set)
                 print()
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
@@ -127,7 +148,12 @@ def main():
     if nlp is None:
         return
 
-    process_file(args.input_file_path, nlp, args.maxlines, args.groupnom)
+    process_file(args.input_file_path,
+                 nlp,
+                 args.maxlines,
+                 args.groupnom,
+                 args.summarize,
+                 )
 
 
 if __name__ == '__main__':
