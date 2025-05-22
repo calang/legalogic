@@ -6,8 +6,6 @@ Obtain a list of co-referenced Named Entities from constitución text.
 import argparse
 import pprint as pp
 
-import numpy as np
-import pandas as pd
 import stanza
 
 from src.config.config import Config
@@ -68,13 +66,13 @@ def process_file(file_path: str,
                  summarize: bool = False,
                  ) -> None:
     """
-    Process a text file.
+    Process a text file for co-reference analysis.
     
     Args:
-        file_path: Path to the input file
-        nlp: Initialized Stanza pipeline
-        maxlines: Maximum number of lines to process from input file
-        summarize: flag to print a set of coref representative texts for each document
+        file_path: Path to the input file to process
+        nlp: Initialized Stanza pipeline for text processing
+        maxlines: Maximum number of lines to process from input file (None for all lines)
+        summarize: If True, print a set of co-reference representative texts for each document
     """
     with open(file_path, 'r', encoding='utf-8') as f:
         line_text_list = f.readlines()
@@ -83,7 +81,6 @@ def process_file(file_path: str,
         print(f"\n{line_text}")
         doc = nlp(line_text)
         print(f"{doc:C}")
-        # print(doc)
         if summarize:
             print('Coref representative texts:')
             coref_text_set = set()
@@ -99,7 +96,7 @@ def main():
     nlp = init_nlp()
     if nlp is None:
         return
-    
+
     process_file(args.input_file_path, nlp, args.maxlines, args.summarize)
 
 
