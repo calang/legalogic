@@ -37,7 +37,7 @@ def set_argparse() -> argparse.Namespace:
     return args
 
 
-def init_nlp(use_gpu: bool = False) -> stanza.Pipeline:
+def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
     """
     Initialize the Stanza NLP pipeline.
     
