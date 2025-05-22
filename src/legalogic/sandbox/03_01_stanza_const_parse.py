@@ -10,8 +10,17 @@ import stanza
 
 def set_argparse() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Obtain Constituency Grammar Trees from constitución text.')
-    parser.add_argument('-v', '--verbose', help='work verbosely', action="store_true")
-    parser.add_argument('input_file_path', help='Path to the input file')
+    parser.add_argument('-v', '--verbose',
+                        help='work verbosely',
+                        action="store_true"
+                        )
+    parser.add_argument('-m', '--maxlines',
+                        type=int,
+                        help='max number of input lines to process',
+                        )
+    parser.add_argument('input_file_path',
+                        help='Path to the input file'
+                        )
     args = parser.parse_args()
     args.prog = parser.prog
     return args
@@ -42,19 +51,28 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
         Stanza Pipeline object or None if initialization fails
     """
     try:
-        return stanza.Pipeline('es', use_gpu=use_gpu, processors='tokenize,pos,constituency')
+        return stanza.Pipeline('es',
+                               use_gpu=use_gpu,
+                               processors='tokenize,pos,constituency',
+                               download_method=None,
+                               )
     except Exception as e:
         print(f"Failed to initialize Stanza pipeline: {e}")
         return None
 
 
-def process_file(file_path: str, nlp: stanza.Pipeline) -> None:
+def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> None:
     """
     Process a text file and print its constituency trees.
     
     Args:
         file_path: Path to the input file
         nlp: Initialized Stanza pipeline
+        maxlines: Maximum number of lines to process from input file
+
+    Raises:
+        FileNotFoundError: If input file does not exist
+        Exception: If dependency parsing fails
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -77,7 +95,7 @@ def main():
     if nlp is None:
         return
     
-    process_file(args.input_file_path, nlp)
+    process_file(args.input_file_path, nlp, args.maxlines)
 
 
 if __name__ == '__main__':

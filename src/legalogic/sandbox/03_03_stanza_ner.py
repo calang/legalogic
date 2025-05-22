@@ -69,7 +69,7 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
     
     Raises:
         FileNotFoundError: If input file does not exist
-        ValueError: If dependency parsing fails
+        Exception: If dependency parsing fails
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
