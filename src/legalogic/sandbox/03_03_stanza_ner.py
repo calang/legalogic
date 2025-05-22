@@ -8,8 +8,10 @@ import argparse
 import stanza
 
 from src.util.pandas_config import configure_pandas_display
+from src.config.config import Config
 
 configure_pandas_display()
+config = Config().config
 
 
 def set_argparse() -> argparse.Namespace:
@@ -75,7 +77,7 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
         with open(file_path, 'r', encoding='utf-8') as f:
             line_text_list = f.readlines()
 
-        for line_text in line_text_list[:(maxlines if maxlines else 1000000)]:
+        for line_text in line_text_list[:maxlines if maxlines else config.get('maxlines_infinite')]:
             doc = nlp(line_text)
             print(f"\n{doc.text}")
             for ent in doc.ents:

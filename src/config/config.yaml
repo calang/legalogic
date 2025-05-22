@@ -1,2 +1,3 @@
 ---
-data: data
+# unlimited maxlines
+maxlines_infinite: 1000000
