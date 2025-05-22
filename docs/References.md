@@ -97,6 +97,7 @@ Information Extraction](https://aclanthology.org/2023.nllp-1.12.pdf)
 
 
 ## Articles
+* [Lexpresso: a Controlled Natural Language](papers/Lexpresso-1407.1933v1.pdf) (also: https://arxiv.org/pdf/1407.1933)
 * [NLP with Stanza: Guide to an NLP package for many languages](https://pythonology.eu/guide-to-nlp-with-stanza-stanfordnlp/)
   * Examples of using Stanza for different types of 
     analyses.

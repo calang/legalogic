@@ -958,6 +958,21 @@ NLTK doesn't have built-in Spanish parsers, but it can display parse trees if yo
 ### Resource Lists
 
 #### [Legal Text Analytics](https://github.com/Liquid-Legal-Institute/Legal-Text-Analytics)
+- [Use Cases Details](https://github.com/Liquid-Legal-Institute/Legal-Text-Analytics/blob/main/use-cases-details.md)
+- [Semantic matching](https://en.wikipedia.org/wiki/Semantic_matching)
+- [Argument Mining](https://en.wikipedia.org/wiki/Argument_mining)
+  - [Logic Translation](https://en.wikipedia.org/wiki/Logic_translation)
+    > [...] logical systems usually do not capture all 
+    inferential patterns. [...] it fails to show that 
+    the argument "(1) John is a pilot; (2) therefore 
+    John can aviate" is correct since it is unable to capture the inferential relation between the terms "Pilot" and "can aviate".[15] If a logical system is applied to cases beyond its limited scope, it is unable to assess the validity of natural language arguments. The advantage of this limitation is that _**_the vagueness and ambiguity of natural language arguments are avoided by making some of the inferential patterns very clear_**_.[16]
+    - [Semantic parsing](https://en.wikipedia.org/wiki/Semantic_parsing)
+      - [Semantic Parsing on Freebase from Question-Answer Pairs](https://aclanthology.org/D13-1160/)
+    - [Attempto Controlled English](https://en.wikipedia.org/wiki/Attempto_Controlled_English)
+      - A controlled natural language, i.e. a subset of 
+        standard English with a restricted syntax and restricted semantics described by a small set of construction and interpretation rules.
+    - [data sets to evaluate the performance of semantic parsers for spanish](https://www.perplexity.ai/search/are-there-data-sets-to-evaluat-1z8ZqaNCQciu398Py_xz7w)
+    - [Ontology learning](https://en.wikipedia.org/wiki/Ontology_learning)
 
 #### [Legal Natural Language Processing](https://github.com/maastrichtlawtech/awesome-legal-nlp)
 
@@ -975,6 +990,8 @@ From: Joohyung Lee
 https://arxiv.org/abs/2307.07696
 
 #### [Weakly supervised semantic parsing with abstract examples](papers/Weakly supervised semantic parsing with abstract examples P18-1168.pdf)
+Focused on identifying objects within images.
+
 Omer Goldman, Veronica Latcinnik, Ehud Nave, Amir
 Globerson, and Jonathan Berant. 2018. **Weakly supervised semantic parsing with abstract examples**. In
 Proceedings of the 56th Annual Meeting of the As-

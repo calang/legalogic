@@ -118,3 +118,21 @@ Added first coref script
   Montero - Fernández Jaén" are recognized as single 
   references by coref (great!)
 
+## 2025-05-21
+Reviewed literature on `semantic parsing`, using 
+articles mentioned in [Recom_from_LLMs.md](Recom_from_LLMs.md).
+
+Using Pycharm AI assistant, asked ChatGPT 4.1: "are there data sets to evaluate the performance of semantic parsers for spanish?"
+- got the response summarized in [here](papers/chat-b05305e5-198b-4429-8de7-b7be1e376a68.md)
+- interestingly, for a legal domain, the main 
+  recommendation from follow-up questions was to encode 
+  the legal content using logic.
+
+Found an interesting reference: [Lexpresso]
+(papers/Lexpresso-1407.1933v1.pdf) (also: https://arxiv.org/pdf/1407.1933)
+
+Next to try: extract all named entities from the 
+constitución text.
+
+
+
