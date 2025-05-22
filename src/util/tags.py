@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-08 -*-
+# -*- coding: utf-8 -*-
 
 """
 Tag dictionaries.

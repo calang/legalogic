@@ -6,6 +6,7 @@ This script processes Spanish text and generates constituency grammar trees usin
 
 import argparse
 import stanza
+from src.util.tags import upos_tags
 
 
 def set_argparse() -> argparse.Namespace:
@@ -53,7 +54,7 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
     try:
         return stanza.Pipeline('es',
                                use_gpu=use_gpu,
-                               processors='tokenize,pos,constituency',
+                               processors='tokenize,mwt,pos,constituency',
                                download_method=None,
                                )
     except Exception as e:
