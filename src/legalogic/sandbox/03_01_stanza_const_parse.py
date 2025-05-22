@@ -27,27 +27,13 @@ def set_argparse() -> argparse.Namespace:
     return args
 
 
-def print_tree(tree: 'ParseTree', indent: int = 0) -> None:
-    """
-    Print a constituency parse tree with proper indentation.
-    
-    Args:
-        tree: The constituency parse tree object to print
-        indent: Number of spaces for indentation (default: 0)
-    """
-    INDENT_SIZE = 4  # Number of spaces for each level of indentation
-    print(f"{' ' * indent}{tree.label}")
-    for child in tree.children:
-        print_tree(child, indent + INDENT_SIZE)
-
-
 def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
     """
     Initialize the Stanza NLP pipeline.
-    
+
     Args:
         use_gpu: Whether to use GPU acceleration if available
-    
+
     Returns:
         Stanza Pipeline object or None if initialization fails
     """
@@ -60,6 +46,25 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
     except Exception as e:
         print(f"Failed to initialize Stanza pipeline: {e}")
         return None
+
+
+def print_tree(tree: 'ParseTree', indent: int = 0) -> None:
+    """
+    Print a constituency parse tree with proper indentation.
+    
+    Args:
+        tree: The constituency parse tree object to print
+        indent: Number of spaces for indentation (default: 0)
+    """
+    INDENT_SIZE = 4  # Number of spaces for each level of indentation
+
+    if tree.label in upos_tags:
+        print(f"{' ' * indent}{tree.label} {tree.children[0].label}")
+        return
+
+    print(f"{' ' * indent}{tree.label}")
+    for child in tree.children:
+        print_tree(child, indent + INDENT_SIZE)
 
 
 def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> None:
