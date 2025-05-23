@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# pylint: skip-file
+# we were not able to use benepar
 
 import spacy
 import benepar

@@ -43,8 +43,7 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
         Stanza Pipeline object or None if initialization fails
     
     Raises:
-        stanza.pipeline.core.ResourcesFileNotFoundError: If required models are not downloaded
-        RuntimeError: If pipeline initialization fails
+        Exception: If pipeline initialization fails
     """
     try:
         return stanza.Pipeline('es',
@@ -53,12 +52,8 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
                                package={"ner": ["ancora", "conll02"]},
                                download_method=None,
                                )
-    except stanza.pipeline.core.ResourcesFileNotFoundError as e:
-        print(f"Required Stanza models not found. Please download models first: {e}")
-        return None
-    except RuntimeError as e:
-        print(f"Failed to initialize Stanza pipeline: {e}")
-        return None
+    except Exception as e:
+        raise Exception(f"Failed to initialize Stanza pipeline: {e}") from e
 
 
 def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> None:

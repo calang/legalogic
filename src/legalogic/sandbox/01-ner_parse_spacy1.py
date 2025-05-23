@@ -6,7 +6,6 @@ Recognize entities mentioned in the constitución.
 
 import argparse
 import sys
-from typing import List
 
 import pandas as pd
 import spacy
@@ -25,7 +24,7 @@ def set_argparse() -> argparse.Namespace:
     return args
 
 
-def print_entities(nlp: spacy.Language, c_lines: List[str]):
+def print_entities(nlp: spacy.Language, c_lines: list[str]):
     """Print entities recognized in the documents."""
     ent_list = []
 
@@ -66,7 +65,7 @@ def print_sent_parse_tree(sent: Span):
     print_token_parse_tree(root)
 
 
-def print_parse_trees(nlp: spacy.Language, c_lines: List[str]):
+def print_parse_trees(nlp: spacy.Language, c_lines: list[str]):
     """Print parse trees for each of the line documents."""
     line = 0
     for line_text in c_lines:
@@ -77,7 +76,7 @@ def print_parse_trees(nlp: spacy.Language, c_lines: List[str]):
         line += 1
 
 
-def render_parse_trees(nlp: spacy.Language, c_lines: List[str], out_file: str):
+def render_parse_trees(nlp: spacy.Language, c_lines: list[str], out_file: str):
     """Create displaCy html file with each of the line documents parse trees."""
     docs = [nlp(line) for line in c_lines]
 

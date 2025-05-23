@@ -4,6 +4,7 @@ Obtain a Dependency Parse from constitución text.
 """
 
 import argparse
+import sys
 
 import numpy as np
 import pandas as pd
@@ -43,8 +44,7 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
         Stanza Pipeline object or None if initialization fails
     
     Raises:
-        stanza.pipeline.core.ResourcesFileNotFoundError: If required models are not downloaded
-        RuntimeError: If pipeline initialization fails
+        Exception: If pipeline initialization fails
     """
     try:
         return stanza.Pipeline('es',
@@ -52,12 +52,8 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
                                processors='tokenize,mwt,pos,lemma,depparse',
                                download_method=None,
                                )
-    except stanza.pipeline.core.ResourcesFileNotFoundError as e:
-        print(f"Required Stanza models not found. Please download models first: {e}")
-        return None
-    except RuntimeError as e:
-        print(f"Failed to initialize Stanza pipeline: {e}")
-        return None
+    except Exception as e:
+        raise Exception(f"Failed to initialize Stanza pipeline: {e}") from e
 
 
 def print_deptree(df: pd.DataFrame, node_index: np.int64, indent: int = 0) -> None:
@@ -120,8 +116,7 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
                 try:
                     root_index = df[df['head'] == "root"].index[0]
                 except Exception as e:
-                    print(f"Exception while looking for head == root: {e}")
-                    exit(1)  # panic!
+                    raise Exception(f"Exception while looking for head == root: {e}") from e
                 print_deptree(df, root_index)
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
