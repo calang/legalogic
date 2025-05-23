@@ -134,5 +134,18 @@ Found an interesting reference: [Lexpresso]
 Next to try: extract all named entities from the 
 constitución text.
 
+## 2025-05-22
+Summarized entity output from sandbox scripts.
+
+## 2025-05-23
+- Reviewed s(Casp) papers, from [References.md](References.md)
+- It seems we might want to use it in the future, as 
+  specialization on how to represent articles becomes 
+  necessary.
+- For the moment, we'll start with simpler Prolog 
+  representations of the articles.
+
+
+
 
 
