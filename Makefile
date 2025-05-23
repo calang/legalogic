@@ -92,6 +92,13 @@ jupl:	ALWAYS
 
 # 	@rm $(TEMPUSR)*
 
+# target: cons_parse.out - produce src/legalogic/sandbox/03_01_stanza_const_parse.out
+cons_parse.out:
+	PYTHONPATH=. python src/legalogic/sandbox/03_01_stanza_const_parse.py \
+		-v -g -s -c -t \
+		data/preprocessed/constitucion_sent_cr.txt \
+		> src/legalogic/sandbox/03_01_stanza_const_parse.out
+
 # ignore files with any of these names
 # so that the rules with those as target are always executed
 .PHONY: ALWAYS

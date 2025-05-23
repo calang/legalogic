@@ -5,6 +5,7 @@ This script processes Spanish text and generates constituency grammar trees usin
 """
 
 import argparse
+from collections import Counter
 import pprint as pp
 
 import stanza
@@ -21,16 +22,20 @@ def set_argparse() -> argparse.Namespace:
                         type=int,
                         help='max number of input lines to process',
                         )
-    parser.add_argument('-g', '--groupnom',
-                        help='collapse group names as a single leaf node',
+    parser.add_argument('-g', '--grupnom',
+                        help='collapse each grup.nom as a single leaf node',
                         action="store_true",
                         )
     parser.add_argument('-c', '--categories',
-                        help='produce a list of group categories at the end of the output',
+                        help='produce a set of gramatical categories at the end of the output',
+                        action="store_true",
+                        )
+    parser.add_argument('-t', '--treenodes',
+                        help='produce a Counter of tree nodes at the end of the output',
                         action="store_true",
                         )
     parser.add_argument('-s', '--summarize',
-                        help='include a list of collapsed grupnoms for each sentence; implies -g if not already set',
+                        help='summarize accumulated counts for each line (default: False)',
                         action="store_true",
                         )
     parser.add_argument('input_file_path',
@@ -39,7 +44,7 @@ def set_argparse() -> argparse.Namespace:
     args = parser.parse_args()
     args.prog = parser.prog
     
-    args.groupnom = args.groupnom or args.summarize
+    args.grupnom = args.grupnom or args.summarize
     
     return args
 
@@ -69,9 +74,10 @@ def init_nlp(use_gpu: bool = True) -> stanza.Pipeline:
 
 def print_tree(tree: 'ParseTree',
                indent: int = 0,
-               group_nom: bool = False,
+               grupnom: bool = False,
                summarize: bool = False,
                categories: bool = False,
+               treenodes: bool = False,
                ) -> set[str]:
     """
     Print a constituency parse tree with proper indentation.
@@ -79,13 +85,15 @@ def print_tree(tree: 'ParseTree',
     Args:
         tree: The constituency parse tree object to print
         indent: Number of spaces for indentation (default: 0)
-        group_nom: Whether to collapse group names as single leaf nodes (default: False)
-        summarize: Whether to produce a list of collapsed group names for each sentence (default: False)
-        categories: Whether to produce a list of group categories at the end of the output (default: False)
+        grupnom: Whether to collapse grup.noms as single leaf nodes (default: False)
+        summarize: Whether to summarize accumulated counts for each line (default: False)
+        categories: Whether to produce a set of gramatical categories at the end of the output (default: False)
+        treenodes: Whether to produce a Counter of tree nodes at the end of the output (default: False)
     
     Returns:
-        - set of collapsed group names if summarize is True, else the empty set
-        - set of group categories if categories is True, else the empty set
+        - set of collapsed grup.noms if summarize is True, else the empty set
+        - set of gramatical categories if categories is True, else the empty set
+        - Counter of tree nodes if treenodes is True, else the empty set
     """
     INDENT_SIZE = 4  # Number of spaces for each level of indentation
 
@@ -101,37 +109,48 @@ def print_tree(tree: 'ParseTree',
     if categories and tree.label not in upos_tags:
         category_set.add(tree.label)
 
-    if group_nom and tree.label == 'grup.nom':
+    treenode_count = Counter()
+    if treenodes and tree.label not in upos_tags and tree.children:
+        new_node = (tree.label, ) + tuple(c.label for c in tree.children)
+        treenode_count[new_node] += 1
+
+    if grupnom and tree.label == 'grup.nom':
         group_text = get_tree_text(tree)
         print(f"{' ' * indent}{tree.label} {group_text}")
         return ({group_text} if summarize else set(),
-                category_set
+                category_set,
+                treenode_count,
                 )
 
     if tree.label in upos_tags:
         print(f"{' ' * indent}{tree.label} {tree.children[0].label}")
-        return set(), category_set
+        return set(), category_set, treenode_count
 
     print(f"{' ' * indent}{tree.label}")
-    group_nom_set = set()
+    grupnom_set = set()
     for child in tree.children:
-        group_nom_subset, category_subset = print_tree(child,
-                                                       indent + INDENT_SIZE,
-                                                       group_nom=group_nom,
-                                                       summarize=summarize,
-                                                       categories=categories,
-                                                       )
-        group_nom_set |= group_nom_subset
+        grupnom_subset, category_subset, treenode_subcount = (
+            print_tree(child,
+                       indent + INDENT_SIZE,
+                       grupnom=grupnom,
+                       summarize=summarize,
+                       categories=categories,
+                       treenodes=treenodes,
+                       )
+        )
+        grupnom_set |= grupnom_subset
         category_set |= category_subset
-    return group_nom_set, category_set
+        treenode_count += treenode_subcount
+    return grupnom_set, category_set, treenode_count
 
 
 def process_file(file_path: str,
                  nlp: stanza.Pipeline,
                  maxlines: int = None,
-                 group_nom: bool = False,
+                 grupnom: bool = False,
                  summarize: bool = False,
                  categories: bool = False,
+                 treenodes: bool = False,
                  ) -> None:
     """
     Process a text file and print its constituency trees.
@@ -140,9 +159,10 @@ def process_file(file_path: str,
         file_path: Path to the input file
         nlp: Initialized Stanza pipeline
         maxlines: Maximum number of lines to process from input file
-        group_nom: Whether to collapse group names as single leaf nodes (default: False)
-        summarize: Whether to include a list of collapsed group names for each sentence (default: False)
-        categories: Whether to produce a list of group categories at the end of the output (default: False)
+        grupnom: Whether to collapse grup.noms as single leaf nodes (default: False)
+        summarize: Whether to summarize accumulated counts for each line (default: False)
+        categories: Whether to produce a set of gramatical categories at the end of the output (default: False)
+        treenodes: Whether to produce a Counter of tree nodes at the end of the output (default: False)
 
     Raises:
         FileNotFoundError: If input file does not exist
@@ -153,21 +173,38 @@ def process_file(file_path: str,
             line_text_list = f.readlines()
 
         all_category_set = set()
+        all_treenode_counts = Counter()
         for line_text in line_text_list[:maxlines]:
             doc = nlp(line_text)
             for sentence in doc.sentences:
                 print(sentence.text)
                 tree = sentence.constituency
                 print(tree)
-                group_name_set, category_set = print_tree(tree, group_nom=group_nom, summarize=summarize, categories=categories)
+                grupnom_set, category_set, treenode_count = print_tree(tree,
+                                                                        grupnom=grupnom,
+                                                                        summarize=summarize,
+                                                                        categories=categories,
+                                                                        treenodes=treenodes,
+                                                                        )
                 if summarize:
-                    print('Group names:')
-                    pp.pprint(group_name_set)
+                    if grupnom:
+                        print('Set of grup.nom:')
+                        pp.pprint(grupnom_set)
+                    if categories:
+                        print(f'Set of gramatical categories ({len(category_set)}):')
+                        pp.pprint(category_set)
+                    if treenodes:
+                        print(f'Tree nodes count: ({len(treenode_count)}):')
+                        pp.pprint(treenode_count)
                 if categories:
                     all_category_set |= category_set
+                if treenodes:
+                    all_treenode_counts += treenode_count
                 print()
-        print('Group categories:')
+        print(f'Total different gramatical categories ({len(all_category_set)}):')
         pp.pprint(all_category_set)
+        print(f'Total tree node counts: ({len(all_treenode_counts)}):')
+        pp.pprint(all_treenode_counts)
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
     except Exception as e:
@@ -183,9 +220,10 @@ def main():
     process_file(args.input_file_path,
                  nlp,
                  args.maxlines,
-                 args.groupnom,
+                 args.grupnom,
                  args.summarize,
                  args.categories,
+                 args.treenodes,
                  )
 
 
