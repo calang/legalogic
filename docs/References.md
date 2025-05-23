@@ -97,6 +97,10 @@ Information Extraction](https://aclanthology.org/2023.nllp-1.12.pdf)
 
 
 ## Articles
+* [In-Order Transition-based Constituent Parsing](papers/In-Order%20Transition-based%20Constituent%20Parsing-%20Q17-1029.pdf)
+  * or from [In-Order Transition-based Constituent Parsing](https://aclanthology.org/Q17-1029/)
+  * constituency parser model used by Stanza
+  * [code](https://github.com/LeonCrashCode/InOrderParser)
 * [Lexpresso: a Controlled Natural Language](papers/Lexpresso-1407.1933v1.pdf) (also: https://arxiv.org/pdf/1407.1933)
 * [NLP with Stanza: Guide to an NLP package for many languages](https://pythonology.eu/guide-to-nlp-with-stanza-stanfordnlp/)
   * Examples of using Stanza for different types of 
