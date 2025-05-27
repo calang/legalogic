@@ -4,6 +4,10 @@ A system to query Costa Rica legal content, based on
 logic, with high precision, reliability, and 
 explainability.
 
+Currently on stand-by, trying to figure out an 
+efficient process to produce logic expressions 
+representing the text.
+
 ## ToC
 <!-- TOC -->
 * [Legalogic](#legalogic)

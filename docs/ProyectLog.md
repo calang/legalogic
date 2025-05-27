@@ -145,6 +145,21 @@ Summarized entity output from sandbox scripts.
 - For the moment, we'll start with simpler Prolog 
   representations of the articles.
 
+## 2025-05-27
+- After checking the output of `03_01_stanza_const_parse.
+py` and `03_02_stanza_dep_parse.py`, I see a large 
+number of structures requiring a translation from tree 
+node to logic expression (1025 types of parse tree nodes, for the constitution alone).
+- The dependency tree also shows a large number of 
+  structures to be expressed in logic.
+- Furthermore, there are variations to be considered, 
+  coming from actual words used.  For example, adverb 
+  expressions like "en tanto que" or "a partir de" will 
+  need temporal restriction expressions to be produced, 
+  later to be used by modal logic.
+- I am taking a break to see if I can figure out a way 
+  to make the whole effort efficient -- placing this 
+  proyect in stand-by, for now.
 
 
 
