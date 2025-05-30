@@ -4,6 +4,8 @@ Obtain a Dependency Parse from constitución text.
 """
 
 import argparse
+from collections import Counter
+import pprint as pp
 import sys
 
 import numpy as np
@@ -93,6 +95,10 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
         with open(file_path, 'r', encoding='utf-8') as f:
             line_text_list = f.readlines()
 
+        total_pos_counts = Counter()
+        total_deprel_pos_counts = Counter()
+        total_deprel_pos_lemma_counts = Counter()
+
         for line_text in line_text_list[:(maxlines if maxlines else 1000000)]:
             doc = nlp(line_text)
             for sent in doc.sentences:
@@ -110,6 +116,9 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
                         'feats': word.feats,
                         'misc': word.misc
                     }
+                    total_pos_counts[word.upos] += 1
+                    total_deprel_pos_counts[(word.deprel,word.pos)] += 1
+                    total_deprel_pos_lemma_counts[(word.deprel,word.pos,word.lemma)] += 1
                     dep_list.append(dep_dict)
                 df = pd.DataFrame(dep_list)
                 print(df)
@@ -118,6 +127,9 @@ def process_file(file_path: str, nlp: stanza.Pipeline, maxlines: int = None) -> 
                 except Exception as e:
                     raise Exception(f"Exception while looking for head == root: {e}") from e
                 print_deptree(df, root_index)
+        pp.pprint(f"\nTotal POS counts: {total_pos_counts}")
+        pp.pprint(f"\nTotal DEPREL-POS counts: {total_deprel_pos_counts}")
+        pp.pprint(f"\nTotal DEPREL-POS-LEMMA counts: {total_deprel_pos_lemma_counts}")
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
     except Exception as e:

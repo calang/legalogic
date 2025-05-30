@@ -30,6 +30,8 @@ A very simple framework for state-of-the-art NLP. Developed by Humboldt Universi
 Another powerful NLP library with support for 
   Spanish, providing high-performance, streamlined processing of text data.
 
+[Universal Dependencies](https://universaldependencies.org/)
+
 ### Stanford CoreNLP
 Supports Spanish; excellent for 
 parsing, dependency analysis (important for logical structure).

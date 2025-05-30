@@ -5,6 +5,7 @@ Analyze stats of nodes found in constitutional parse.
 """
 
 from collections import Counter
+import pprint as pp
 
 node_count = Counter(
     {
@@ -1038,3 +1039,7 @@ node_count = Counter(
 
 print(f"nodos de largo 2: {len([n for n in node_count if len(n) == 2])}")
 
+count_len = Counter([len(t) for t in node_count])
+sorted_count_len = sorted(count_len.items())
+
+pp.pprint(f"distribución de len(nodo): \n{sorted_count_len}")
