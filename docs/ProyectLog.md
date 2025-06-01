@@ -161,6 +161,19 @@ node to logic expression (1025 types of parse tree nodes, for the constitution a
   to make the whole effort efficient -- placing this 
   proyect in stand-by, for now.
 
+## 2025-05-31
+After having found that the parsing or dependency
+structures tend to be large, I 
+figured: why not try to ask some LLM to generate their 
+logic expressions?
+
+Found that [this 
+work](https://arxiv.org/html/2502.17638v1) (feb 2025) 
+actually tried this, to some extent. While it 
+mentions good 
+indication that this is promising, there still are 
+many limitations that need to be overcome.
+
 
 
 

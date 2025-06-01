@@ -99,6 +99,13 @@ cons_parse.out:
 		data/preprocessed/constitucion_sent_cr.txt \
 		> src/legalogic/sandbox/03_01_stanza_const_parse.out
 
+# target: dep_parse.out - produce src/legalogic/sandbox/03_01_stanza_const_parse.out
+dep_parse.out:
+	PYTHONPATH=. python src/legalogic/sandbox/03_02_stanza_dep_parse.py \
+		-v \
+		data/preprocessed/constitucion_sent_cr.txt \
+		> src/legalogic/sandbox/03_02_stanza_dep_parse.out
+
 # ignore files with any of these names
 # so that the rules with those as target are always executed
 .PHONY: ALWAYS
