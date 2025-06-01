@@ -103,8 +103,14 @@ widely-used format for representing knowledge graphs.
 
 
 ## Knowledge Graphs
-### [How to Convert Any Text Into a Graph of Concepts](https://towardsdatascience.com/how-to-convert-any-text-into-a-graph-of-concepts-110844f22a1a/)
-### [Text to Knowledge Graph Made Easy with Graph Maker](https://towardsdatascience.com/text-to-knowledge-graph-made-easy-with-graph-maker-f3f890c0dbe8/)
+- [How to Convert Any Text Into a Graph of Concepts](https://towardsdatascience.com/how-to-convert-any-text-into-a-graph-of-concepts-110844f22a1a/)
+- [Text to Knowledge Graph Made Easy with Graph Maker](https://towardsdatascience.com/text-to-knowledge-graph-made-easy-with-graph-maker-f3f890c0dbe8/)
+- [Extracting Knowledge Graphs From Text With GPT4o](https://www.youtube.com/watch?v=O-T_6KOXML4) Thu Vu
+  - using langchain
+  - requires API key from OpenAI and available credit
+  - supposedly, can use other LLMs
+  - might use with Pycharm AI assistant
+
 
 
 ## Projects with similar Objectives
