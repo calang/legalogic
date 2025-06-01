@@ -189,16 +189,16 @@ Programming for Robust and General Reasoning from Text](papers/Coupling Large La
   https://aclanthology.org/P18-1168/
 
 ### ASP
-* [ASP-based legal decision explanation systems](https://ceur-ws.org/Vol-3733/short3.pdf)
-  * Criminal law encoding: this stage is currently carried on by humans
-* [Answer set programming](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
+* **Answer set programming**
   * Vladimir Lifschitz. 2019. Answer set programming. Springer Heidelberg
   https://link.springer.com/book/10.1007/978-3-030-24658-7#toc
 * [Answer set programming - Wikipedia](https://en.wikipedia.org/wiki/Answer_set_programming)
+* [Stable model semantics - Wikipedia](https://en.wikipedia.org/wiki/Stable_model_semantics)
+* [ASP-based legal decision explanation systems](https://ceur-ws.org/Vol-3733/short3.pdf)
+  * Criminal law encoding: this stage is currently carried on by humans
 * Constraint Answer Set Programming without Grounding
   * [pdf](papers/answer-set-programming-978-3-030-24658-7_compress.pdf)
   * https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/constraint-answer-set-programming-without-grounding/55A678C618EF54487777F021D89B3FE7
-* [Stable model semantics - Wikipedia](https://en.wikipedia.org/wiki/Stable_model_semantics)
 ### Other
 * [PROLEG and deep learning integration for legal reasoning](https://arxiv.org/pdf/2306.16632.pdf)
 * [LawGiBa: Combining GPT, knowledge bases, and Prolog for legal assistance](https://ebooks.iospress.nl/doi/10.3233/FAIA230991)
